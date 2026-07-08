@@ -85,43 +85,45 @@ When an admin logs in successfully, the app creates a JWT token with the admin r
 
 Tech Stack Used:
 
-Python
+1.Python - 
 Python is the main programming language used for the app logic.
 
-Streamlit
+2.Streamlit - 
 Streamlit is used to build the web interface, pages, forms, buttons, messages, dashboard cards, and layout.
 
-SQLite
+3.SQLite - 
 SQLite is used as the local database. It stores registered user data such as username, email, hashed password, security question, and hashed security answer.
 
-bcrypt
+4.bcrypt - 
 bcrypt is used to hash passwords and security answers. This means plain text passwords are not stored in the database.
 
-PyJWT
+5.PyJWT - 
 PyJWT is used to create and verify JWT tokens for login sessions and OTP verification.
 
-Plotly
+6.Plotly - 
 Plotly is used to build the dashboard gauge chart.
 
-pyngrok
+7.pyngrok - 
 pyngrok is used to expose the Streamlit app running in Google Colab through a public URL.
 
-Google Colab
+8.Google Colab - 
 Google Colab is used as the notebook environment for running the Streamlit app.
 
-Gmail SMTP
+9.Gmail SMTP - 
 Gmail SMTP is used to send OTP emails during password recovery.
 
 
 How To Run The Notebook:
 
 Step 1: Install Required Packages
+
 Run this cell in Google Colab:
 !pip install -q streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
   This installs all required Python packages for the app.
 
  Step 2: Create The Streamlit App 
 
+Run the notebook cell that writes the complete app code
 
 Step 3 : Add Colab Secrets
 In Google Colab, open the Secrets tab and add these secrets:
