@@ -35,6 +35,7 @@ The login form does not submit if any required field is empty.
 When login succeeds, the app creates a JWT session token and stores it in Streamlit session state. This token is then used to decide whether the dashboard can be shown.
 
 2. Signup Page
+
 The signup page allows new users to create an account.
 Required fields:
 Username
@@ -48,6 +49,7 @@ The username and email must be unique. If a user tries to sign up using an exist
 After successful signup, the user is sent back to the Login page. A JWT is not issued during signup. A JWT is issued only after a successful login.
 
 3. Forgot Password Page
+
 The forgot password page gives users two recovery methods.
 Security Question Reset
 The user enters their registered email address and chooses the security question method.
@@ -57,7 +59,7 @@ OTP Reset
 The user enters their registered email address and chooses the OTP method.
 The app generates a 6-digit OTP and sends it to the user’s email address using Gmail SMTP. The OTP is stored securely inside a JWT token with an expiry time.
 The user must enter the correct OTP before setting a new password.
- 4.  Password Rules:
+ 5.  Password Rules:
 Passwords must satisfy all of the following conditions:
 Minimum 8 characters
 At least one lowercase letter
@@ -67,6 +69,7 @@ At least one special character
 #During password reset, the app also checks whether the new password is the same as the old password. If it is the same, the user is asked to choose another password.
 
 5.Email Format Rule:
+
 The app validates email addresses using a custom rule.
 The email must have:
 At least 2 letters before the @
@@ -74,6 +77,7 @@ At least 2 letters between the @ and the dot
 At least 2 letters after the final dot
 
 6 .JWT Session Handling:
+
 JWT is used to manage sessions.
 When a normal user logs in successfully, the app creates a JWT token with the user role.
 When an admin logs in successfully, the app creates a JWT token with the admin role.
