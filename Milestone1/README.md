@@ -1,116 +1,174 @@
-Infosys Franchise Analytics & Management Portal
-An enterprise-grade operational dashboard designed to securely track franchise performance KPIs, audit user allocations, and monitor real-time system health parameters. Built using a secure, responsive single-file architecture leveraging Python, Streamlit, and SQLite3.
+Milestone 1: Secure Streamlit Authentication & Dashboard System
+Overview
+Milestone 1 is the first complete working version of the Infosys Franchise Analytics & Management authentication and dashboard application.
+This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users.
+The application is designed to run in Google Colab and is exposed publicly using ngrok.
+What Was Built
+The application includes three main public pages and two protected dashboards.
+1. Login Page
+The Login page allows users to sign in using either their username or email address.
+Fields:
+Username / Email
+Password
+Login behavior:
+Both fields are mandatory.
+On successful login, a JWT session token is created.
+The JWT token is stored in Streamlit session state.
+The dashboard is shown only when a valid JWT token exists.
+If login fails, the app shows one generic error message.
+The error does not reveal whether the username/email or password was incorrect.
+2. Signup Page
+The Signup page allows new users to create an account.
+Fields:
+Username
+Email
+Password
+Confirm Password
+Security Question
+Security Answer
+Signup behavior:
+All fields are mandatory.
+Username must be unique.
+Email must be unique.
+The admin username is reserved and cannot be used by normal users.
+Security question is selected from a fixed list.
+Security answer is hashed before storing.
+Passwords are hashed before storing.
+After successful signup, the user is redirected to the Login page.
+Signup does not issue a JWT token.
+3. Forgot Password Page
+The Forgot Password page supports two password recovery methods.
+Security Question Reset
+The user enters their registered email address and selects the security question route. If the email exists, the stored security question is displayed. The user must answer correctly before setting a new password.
+OTP Reset
+The user enters their registered email address and selects the OTP route. A 6-digit OTP is generated and sent to the user's email through Gmail SMTP. The user must verify the OTP before setting a new password.
+4. User Dashboard
+After a normal user logs in successfully, the app displays the User Dashboard.
+The dashboard includes:
+Analytics dashboard header
+User name badge
+Documents Indexed card
+Searches Today card
+Efficiency Score card
+Security Status card
+System Health Index gauge chart
+5. Admin Dashboard
+The Admin Dashboard uses a separate login that is defined directly in the code.
+Admin credentials:
+Username: admin
+Password: Admin@123
+The admin account is not created from the Signup page.
+After admin login, the Admin Dashboard displays all registered users with only:
+Username
+Email
+The admin dashboard never displays password data, password hashes, security answers, OTP values, or JWT tokens.
+Validation and Security Rules
+Mandatory Fields
+No form is submitted if a required field is empty. This applies to:
+Login
+Signup
+Forgot Password
+Security question reset
+OTP reset
+Email Format Rule
+The email must follow this structure:
+At least 2 letters before @
+At least 2 letters between @ and .
+At least 2 letters after the final .
+Example:
+ab@cd.ef
+Password Policy
+Passwords must include:
+Minimum 8 characters
+At least one lowercase letter
+At least one uppercase letter
+At least one number
+At least one special character
+Example:
+Bhavya@123
+During password reset, users cannot reuse their current password.
+JWT Session Handling
+JWT is used for session management.
+JWT is issued only after successful login.
+JWT is stored in Streamlit session state.
+Signup does not issue a JWT.
+Password reset does not issue a JWT.
+Dashboard access requires a valid JWT.
+Invalid or missing JWT redirects the user to Login.
+Tech Stack Used
+Technology	Purpose
+Python	Main programming language
+Streamlit	Web application interface
+SQLite	Local user database
+bcrypt	Password and security answer hashing
+PyJWT	JWT session and OTP token handling
+Plotly	Dashboard gauge chart
+pyngrok	Public URL for the Colab app
+Google Colab	Notebook runtime environment
+Gmail SMTP	OTP email delivery
 
- Architecture Design & Data Flow
-The portal implements an integrated multi-tenant design that isolates structural operational privileges based on authenticated user tokens.
+Project Structure
+Milestone1/
+|
+|-- README.md
+|-- app.py
+`-- screenshots/
+    |-- login.png
+    |-- signup.png
+    |-- forgot-password-security-question.png
+    |-- forgot-password-otp.png
+    |-- otp-email.png
+    |-- user-dashboard.png
+    `-- admin-dashboard.png
+How To Run The Notebook
+Step 1: Install Dependencies
+Run this cell in Google Colab:
+!pip install -q streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
+Step 2: Create the Streamlit App
+Run the notebook cell that writes the full Streamlit application into app.py.
+The cell should start with:
+%%writefile app.py
+Step 3: Add Colab Secrets
+Open the Secrets tab in Google Colab and add:
+NGROK_AUTHTOKEN
+EMAIL_PASSWORD
+NGROK_AUTHTOKEN is used to generate the public ngrok URL.
+EMAIL_PASSWORD must be a Gmail App Password, not the normal Gmail account password.
+Step 4: Start the App
+Run the Streamlit/ngrok cell. The app runs on port 8501, and ngrok generates a public URL.
+Open the generated URL in your browser.
+Login Details
+Admin Login
+Username: admin
+Password: Admin@123
+Normal User Login
+Normal users must first create an account from the Signup page. After signup, they can log in using either their username or email address.
+Screenshots
+Add the following screenshots inside the screenshots folder.
+Login Page
 
-Presentation Tier: A custom-styled Streamlit UI backed by an automated CSS injection engine that manages themes, container transitions, layout depths, and input fields.
+Signup Page
 
-Security & Session Middleware: Uses cryptographic hashing via bcrypt for structural credential protection and state tracking via JSON Web Tokens (HS256).
+Forgot Password - Security Question Route
 
-Storage Tier: A relational SQLite3 thread pool that houses database states and handles concurrent credential queries cleanly.
+Forgot Password - OTP Route
 
- Complete Environment Setup & Configuration
-Follow these instructions to configure environment settings and spin up the production cluster.
+OTP Email
 
-1. Prerequisites & Dependencies
-Ensure your development workstation runs Python 3.10 or newer. Install all mandatory packages via pip:
+User Dashboard
 
-Bash
-pip install streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
-2. Environment Variables Configuration
-The platform relies on system variables to initialize the automated SMTP email engine safely. Define your variables based on your operating environment:
+Admin Dashboard
 
-Linux / macOS:
-
-Bash
-export EMAIL_PASSWORD="your_gmail_app_password"
-Windows (PowerShell):
-
-PowerShell
-$env:EMAIL_PASSWORD="your_gmail_app_password"
-Google Colab Secrets:
-Add a secret parameter named EMAIL_PASSWORD to your notebook's User Data panel.
-
-3. Executing the Local Server Instance
-Run the execution script to launch the app locally on port 8501:
-
-Bash
-streamlit run app.py --server.port 8501
- Complete Interface Walkthrough
- Authentication Pipelines
-User Sign In
-The initial portal gateway utilizes real-time string cleansing to safely process incoming email parameters or alphanumeric user handles before passing them to the validation layer.
-
-Secure Account Registration
-Enforces password constraints requiring at least 8 characters, an uppercase letter, a lowercase letter, a numeral, and a special character.
-
- Credential & Account Recovery Infrastructure
-If a session token expires or a credential is lost, users can dynamically route themselves through two distinct recovery mechanisms.
-
-Recovery Path A: Hashed Security Questions
-Queries the encrypted local database layer directly to match hashed answers against salted user states.
-
-Recovery Path B: Automated Mail Engine OTP
-Dispatches an automated, responsive HTML email containing a 6-digit verification pin that automatically decays and invalidates within 5 minutes of creation.
-
- Application Workspaces
-Standard User Analytics Panel
-Provides an interactive business intelligence space detailing transaction counts, execution performance metrics, and a dynamic Plotly gauge tracking system health indexes.
-
-Administrative Management Console
-Elevated operational portal reserved for administrators, providing a complete structural audit trail of all accounts registered inside the SQLite database.
-
- Relational Database Schema
-The SQLite instance initializes a single users entity table during system boot.
-
-SQL
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE,
-    email TEXT UNIQUE,
-    password_hash TEXT,
-    security_question TEXT,
-    security_answer_hash TEXT
-);
- Security Constraints & Production Notes
-Default Administrative Access Keys: Username: admin | Password: Admin@123.
-
-Production Hardening: Ensure these defaults are migrated to runtime secrets prior to deploying the container to public clouds.
-
-Session Lifespans: Active user JWT tokens are hard-coded to decay and expire exactly 2 hours post-issue to mitigate session-hijacking vulnerabilities.
-
-
-### 🔐 Authentication Flow
-
-#### User Sign In Screen
-![Sign In Portal](./sign%20in.png)
-
-#### Secure Account Creation
-![Create Account Panel](./create_account.jpeg)
-
----
-
-### 🛡️ Credential & Account Recovery Pipelines
-
-#### Multi-Option Password Reset Hub
-![Forget Password Selector](./forget_password.png)
-
-#### Recovery Path A: Security Questions
-![Security Question Prompt](./reset_password_via_question.png)
-
-#### Recovery Path B: Automated Mail Engine OTP
-![Request for OTP](./request_for_otp.png)
-
-#### OTP Verification Challenge
-![OTP Verification Challenge](./password_via_otp.png)
-
----
-
-### 📊 Application Workspace
-
-#### Standard User Analytics Dashboard
-![User Analytics Dashboard](./user_iterface.png)
-
-#### Administrative Management Control Pane
-![Administrative Console](./admin_interface.jpeg)
+Security Notes
+Passwords are never stored as plain text.
+Passwords are hashed using bcrypt.
+Security answers are also hashed.
+JWT is used to control dashboard access.
+Admin credentials are separate from signup accounts.
+Admin dashboard only displays username and email.
+Password hashes and security answers are never displayed.
+OTP verification is required before OTP-based password reset.
+Users cannot reset their password to the same old password.
+Milestone Summary
+Milestone 1 delivers a complete authentication and dashboard workflow. It includes secure signup, login, forgot password recovery using security question and OTP, JWT session handling, password validation, a user analytics dashboard, and a separate admin dashboard.
+This milestone creates the foundation for future improvements such as advanced franchise analytics, user activity logs, database deployment, role permissions, and production hosting.
