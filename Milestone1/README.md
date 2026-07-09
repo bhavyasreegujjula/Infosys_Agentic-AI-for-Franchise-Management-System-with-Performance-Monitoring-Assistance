@@ -12,6 +12,7 @@ What Was Built:
 The application includes three main public pages and two protected dashboards.
 
 1. Login Page
+
 The Login page allows users to sign in using either their username or email address.
 Fields:
 Username / Email
@@ -26,6 +27,7 @@ The error does not reveal whether the username/email or password was incorrect.
 
 
 2. Signup Page
+
 The Signup page allows new users to create an account.
 Fields:
 Username
@@ -46,6 +48,7 @@ After successful signup, the user is redirected to the Login page.
 Signup does not issue a JWT token.
 
 3. Forgot Password Page
+
 The Forgot Password page supports two password recovery methods.
 Security Question Reset
 The user enters their registered email address and selects the security question route. If the email exists, the stored security question is displayed. The user must answer correctly before setting a new password.
@@ -54,6 +57,7 @@ The user enters their registered email address and selects the OTP route. A 6-di
 
 
 4. User Dashboard
+
 After a normal user logs in successfully, the app displays the User Dashboard.
 The dashboard includes:
 Analytics dashboard header
@@ -66,6 +70,7 @@ System Health Index gauge chart
 
 
 5. Admin Dashboard
+
 The Admin Dashboard uses a separate login that is defined directly in the code.
 Admin credentials:
 Username: admin
@@ -86,6 +91,7 @@ Security question reset
 OTP reset
 
 Email Format Rule:
+
 The email must follow this structure:
 At least 2 letters before @
 At least 2 letters between @ and .
@@ -94,6 +100,7 @@ Example:
 ab@cd.ef
 
 Password Policy
+
 Passwords must include:
 Minimum 8 characters
 At least one lowercase letter
