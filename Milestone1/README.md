@@ -7,7 +7,8 @@ This milestone focuses on building a secure login system inside a single Streaml
 The application is designed to run in Google Colab and is exposed publicly using ngrok.
 
 
-What Was Built
+What Was Built:
+
 The application includes three main public pages and two protected dashboards.
 
 1. Login Page
