@@ -1,94 +1,81 @@
 Infosys Franchise Analytics & Management Portal
-An enterprise-grade, secure business intelligence and operational management system built for monitoring franchise performance metrics, system health indices, and user authentication management.
+An enterprise-grade operational dashboard designed to securely track franchise performance KPIs, audit user allocations, and monitor real-time system health parameters. Built using a secure, responsive single-file architecture leveraging Python, Streamlit, and SQLite3.
 
-🚀 Features
-Secure JWT Token Authentication: Session management backed by strong JSON Web Tokens with automated token validation.
+ Architecture Design & Data Flow
+The portal implements an integrated multi-tenant design that isolates structural operational privileges based on authenticated user tokens.
 
-Cryptographic Security Core: Production-level credential protection using bcrypt salting/hashing.
+Presentation Tier: A custom-styled Streamlit UI backed by an automated CSS injection engine that manages themes, container transitions, layout depths, and input fields.
 
-Dual-Layer Multi-Tenant Architecture: Integrated separation of concerns for Standard Users and Administrative Staff.
+Security & Session Middleware: Uses cryptographic hashing via bcrypt for structural credential protection and state tracking via JSON Web Tokens (HS256).
 
-Flexible Multi-Factor Account Recovery: Dynamic password reset pipelines running over both Gmail App Password OTP pipelines and structural Security Questions.
+Storage Tier: A relational SQLite3 thread pool that houses database states and handles concurrent credential queries cleanly.
 
-Interactive High-Fidelity Data Visualizations: Real-time KPI micro-cards paired with responsive Plotly gauge telemetry.
+ Complete Environment Setup & Configuration
+Follow these instructions to configure environment settings and spin up the production cluster.
 
-🛠️ Tech Stack & Prerequisites
-Before setting up the repository environment, ensure you have the following frameworks and tools available:
-
-Core Engine: Python 3.10+
-
-Database: SQLite3
-
-Frontend UI Framework: Streamlit
-
-Data Visualization: Plotly Open Source
-
-Network Tunneling Core: Pyngrok
-
-📂 Installation & Deployment Guide
-Follow these sequential terminal configurations to get your dashboard environment fully operational.
-
-1. Environment Setup & Dependency Installation
-Clone your repository and install the structural software bundles:
+1. Prerequisites & Dependencies
+Ensure your development workstation runs Python 3.10 or newer. Install all mandatory packages via pip:
 
 Bash
-# Clone your repository
-git clone https://github.com/your-username/smart_parking_rag.git
-cd smart_parking_rag
-
-# Install all requisite platform dependencies
 pip install streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
 2. Environment Variables Configuration
-The production engine reads structural mail secrets straight out of your machine's environment parameters. Run these configuration steps before calling the execution block:
+The platform relies on system variables to initialize the automated SMTP email engine safely. Define your variables based on your operating environment:
+
+Linux / macOS:
 
 Bash
-# For Windows environments (PowerShell)
-$env:EMAIL_PASSWORD="your_gmail_app_password"
-
-# For Linux/Mac/Google Colab Secrets
 export EMAIL_PASSWORD="your_gmail_app_password"
-3. Launching the Local Engine
-Execute the core script using the Streamlit deployment module:
+Windows (PowerShell):
+
+PowerShell
+$env:EMAIL_PASSWORD="your_gmail_app_password"
+Google Colab Secrets:
+Add a secret parameter named EMAIL_PASSWORD to your notebook's User Data panel.
+
+3. Executing the Local Server Instance
+Run the execution script to launch the app locally on port 8501:
 
 Bash
 streamlit run app.py --server.port 8501
-📸 Interface Showcases & Visual Proofs
-🔐 Authentication Flow
-User Sign In Screen
-Provides an authoritative portal with rigorous string cleansing algorithms validating inputs dynamically.
+ Complete Interface Walkthrough
+ Authentication Pipelines
+User Sign In
+The initial portal gateway utilizes real-time string cleansing to safely process incoming email parameters or alphanumeric user handles before passing them to the validation layer.
 
-Secure Account Creation
-Includes client-side regex validations enforcing length constraints, case matching, numerical injections, and explicit special characters.
+Secure Account Registration
+Enforces password constraints requiring at least 8 characters, an uppercase letter, a lowercase letter, a numeral, and a special character.
 
-🛡️ Credential & Account Recovery Pipelines
-Multi-Option Password Reset Hub
-Users can dynamically choose their path to authentication recovery.
+ Credential & Account Recovery Infrastructure
+If a session token expires or a credential is lost, users can dynamically route themselves through two distinct recovery mechanisms.
 
-Recovery Path A: Security Questions
-Queries the encrypted local database layer directly to match hashed answers.
+Recovery Path A: Hashed Security Questions
+Queries the encrypted local database layer directly to match hashed answers against salted user states.
 
 Recovery Path B: Automated Mail Engine OTP
-Dispatches responsive, corporate-styled HTML emails via a secure SMTP tunnel.
+Dispatches an automated, responsive HTML email containing a 6-digit verification pin that automatically decays and invalidates within 5 minutes of creation.
 
-📊 Application Workspace
-Standard User Analytics Dashboard
-An interactive space displaying micro-KPI tracking tiles alongside an operational health index canvas.
+ Application Workspaces
+Standard User Analytics Panel
+Provides an interactive business intelligence space detailing transaction counts, execution performance metrics, and a dynamic Plotly gauge tracking system health indexes.
 
-Administrative Management Control Pane
-Elevated dashboards designed for complete database audit tracking and account control.
+Administrative Management Console
+Elevated operational portal reserved for administrators, providing a complete structural audit trail of all accounts registered inside the SQLite database.
 
-🏗️ Architecture Design & Data Flow
-[ User Browser ] <---> [ Streamlit Frontend Engine ] <---> [ Security Layer (JWT & Bcrypt) ]
-                                                                   |
-                                                                   v
-                                                       [ SQLite3 Relational DB ]
-Presentation Layer: Built with Streamlit components, styled comprehensively via a modern CSS injection pipeline for uniform branding.
+ Relational Database Schema
+The SQLite instance initializes a single users entity table during system boot.
 
-Security & Cryptography Module: interceptors authenticate structural integrity by decoding standard HS256 signatures before updating active component matrices.
+SQL
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    email TEXT UNIQUE,
+    password_hash TEXT,
+    security_question TEXT,
+    security_answer_hash TEXT
+);
+ Security Constraints & Production Notes
+Default Administrative Access Keys: Username: admin | Password: Admin@123.
 
-Storage Framework: Uses an isolated SQLite system connection thread pools to commit rows without racing states.
+Production Hardening: Ensure these defaults are migrated to runtime secrets prior to deploying the container to public clouds.
 
-🔒 Security Specifications
-Admin Default Access Keys: Username: admin | Password: Admin@123 (Note: Please migrate these default keys to custom variables before deployment to public production clusters).
-
-OTP Lifetime Limits: Tokens automatically decay and invalidate within 5 minutes of creation to mitigate intercept vector loops.
+Session Lifespans: Active user JWT tokens are hard-coded to decay and expire exactly 2 hours post-issue to mitigate session-hijacking vulnerabilities.
