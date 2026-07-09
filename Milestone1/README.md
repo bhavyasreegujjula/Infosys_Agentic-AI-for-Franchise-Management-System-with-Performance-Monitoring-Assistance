@@ -79,3 +79,38 @@ Default Administrative Access Keys: Username: admin | Password: Admin@123.
 Production Hardening: Ensure these defaults are migrated to runtime secrets prior to deploying the container to public clouds.
 
 Session Lifespans: Active user JWT tokens are hard-coded to decay and expire exactly 2 hours post-issue to mitigate session-hijacking vulnerabilities.
+
+
+### 🔐 Authentication Flow
+
+#### User Sign In Screen
+![Sign In Portal](./sign%20in.png)
+
+#### Secure Account Creation
+![Create Account Panel](./create_account.jpeg)
+
+---
+
+### 🛡️ Credential & Account Recovery Pipelines
+
+#### Multi-Option Password Reset Hub
+![Forget Password Selector](./forget_password.png)
+
+#### Recovery Path A: Security Questions
+![Security Question Prompt](./reset_password_via_question.png)
+
+#### Recovery Path B: Automated Mail Engine OTP
+![Request for OTP](./request_for_otp.png)
+
+#### OTP Verification Challenge
+![OTP Verification Challenge](./password_via_otp.png)
+
+---
+
+### 📊 Application Workspace
+
+#### Standard User Analytics Dashboard
+![User Analytics Dashboard](./user_iterface.png)
+
+#### Administrative Management Control Pane
+![Administrative Console](./admin_interface.jpeg)
