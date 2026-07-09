@@ -185,7 +185,7 @@ Add the following screenshots inside the screenshots folder.
 Login Page
 
 
-Signup Page
+Signup Page  <img width="1917" height="1017" alt="Image" src="https://github.com/user-attachments/assets/66601a96-a036-4c31-b571-171b8c3ae642" />
 
 
 Forgot Password - Security Question Route
