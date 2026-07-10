@@ -11,7 +11,7 @@ The application is designed to run in Google Colab and is exposed publicly using
 
 The application includes three main public pages and two protected dashboards.
 
-1. ***Login Page:****
+1. **Login Page:**
 
 The Login page allows users to sign in using either their username or email address.
 Fields:
@@ -26,7 +26,7 @@ The JWT token is stored in Streamlit session state.The dashboard is shown only w
 The error does not reveal whether the username/email or password was incorrect.
 
 
-2. ****Signup Page:****
+2. **Signup Page:**
 
 The Signup page allows new users to create an account.
 Fields:
@@ -38,7 +38,7 @@ Fields:
 5.Security Question
 6.Security Answer
 
-****Signup behavior:****
+3. **Signup behavior:**
 
 a.All fields are mandatory.
 b.Username must be unique.
@@ -50,19 +50,19 @@ Passwords are hashed before storing.
 After successful signup, the user is redirected to the Login page.
 Signup does not issue a JWT token.
 
-3. ****Forgot Password Page:****
+3. **Forgot Password Page:**
 
-The Forgot Password page supports two password recovery methods.
-1.Security Question Reset:
+The Forgot Password page supports two password recovery methods:
+  1.****Security Question Reset:****
 
 The user enters their registered email address and selects the security question route. If the email exists, the stored security question is displayed. The user must answer correctly before setting a new password.
 
-2.OTP Reset:
+  2.****OTP Reset:****
 
 The user enters their registered email address and selects the OTP route. A 6-digit OTP is generated and sent to the user's email through Gmail SMTP. The user must verify the OTP before setting a new password.
 
 
-4.**** User Dashboard: ****
+4. **User Dashboard:**
 
 After a normal user logs in successfully, the app displays the User Dashboard.
 The dashboard includes:
@@ -75,11 +75,11 @@ Security Status card
 System Health Index gauge chart
 
 
-5. ****Admin Dashboard: ****
+5. **Admin Dashboard:**
 
 The Admin Dashboard uses a separate login that is defined directly in the code.
 
-Admin credentials:
+****Admin credentials:****
 
 Username: admin
 Password: Admin@123
@@ -131,18 +131,23 @@ Dashboard access requires a valid JWT.
 Invalid or missing JWT redirects the user to Login.
 
 
-****Tech Stack Used:****
+**Tech Stack Used:**
 
-Technology               	Purpose
-Python             	Main programming language
-Streamlit	          Web application interface
-SQLite            	Local user database
-bcrypt	            Password and security answer hashing
-PyJWT	              JWT session and OTP token handling
-Plotly	            Dashboard gauge chart
-pyngrok	            Public URL for the Colab app
-Google Colab	      Notebook runtime environment
-Gmail SMTP	        OTP email delivery
+## 🛠️ Technology Stack
+
+| Technology       | Purpose                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------ |
+| **Python**       | Backend programming language used to implement the authentication logic and application functionality. |
+| **Streamlit**    | Used to build the interactive web application and user interface.                                      |
+| **HTML5**        | Used to create the structure and content of web pages.                                                 |
+| **Bootstrap**    | Used to build a responsive and modern user interface.                                                  |
+| **SQLite**       | Database used to securely store user information and authentication data.                              |
+| **bcrypt**       | Used to hash and verify user passwords securely before storing them in the database.                   |
+| **PyJWT**        | Used to generate and validate JSON Web Tokens (JWT) for secure authentication and session management.  |
+| **SMTP (Gmail)** | Used to send OTP emails for password recovery and verification.                                        |
+| **Plotly**       | Used to create interactive charts and visualizations for the dashboard.                                |
+| **pyngrok**      | Used to expose the local application through a secure public URL when running in Google Colab.         |
+
 
 **Project Structure:**
 
