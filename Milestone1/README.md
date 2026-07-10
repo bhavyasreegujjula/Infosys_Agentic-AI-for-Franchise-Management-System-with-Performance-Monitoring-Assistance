@@ -15,9 +15,11 @@ The application includes three main public pages and two protected dashboards.
 
 The Login page allows users to sign in using either their username or email address.
 Fields:
+
 Username / Email
 Password
 Login behavior:
+
 Both fields are mandatory.On successful login, a JWT session token is created.
 The JWT token is stored in Streamlit session state.The dashboard is shown only when a valid JWT token exists.If login fails, the app shows one generic error message.
 The error does not reveal whether the username/email or password was incorrect.
@@ -27,14 +29,16 @@ The error does not reveal whether the username/email or password was incorrect.
 
 The Signup page allows new users to create an account.
 Fields:
-Username
-Email
-Password
-Confirm Password
-Security Question
-Security Answer
+
+1.Username
+2.Email
+3.Password
+4.Confirm Password
+5.Security Question
+6.Security Answer
 
 Signup behavior:
+
 a.All fields are mandatory.
 b.Username must be unique.
 c.Email must be unique.
@@ -48,13 +52,15 @@ Signup does not issue a JWT token.
 3. Forgot Password Page
 
 The Forgot Password page supports two password recovery methods.
-Security Question Reset
+1.Security Question Reset:
+
 The user enters their registered email address and selects the security question route. If the email exists, the stored security question is displayed. The user must answer correctly before setting a new password.
-OTP Reset
+2.OTP Reset:
+
 The user enters their registered email address and selects the OTP route. A 6-digit OTP is generated and sent to the user's email through Gmail SMTP. The user must verify the OTP before setting a new password.
 
 
-4. User Dashboard
+4. User Dashboard:
 
 After a normal user logs in successfully, the app displays the User Dashboard.
 The dashboard includes:
@@ -71,6 +77,7 @@ System Health Index gauge chart
 
 The Admin Dashboard uses a separate login that is defined directly in the code.
 Admin credentials:
+
 Username: admin
 Password: Admin@123
 The admin account is not created from the Signup page.
