@@ -181,22 +181,36 @@ Normal users must first create an account from the Signup page. After signup, th
 
 Screenshots:
 
-Add the following screenshots inside the screenshots folder.
+All screenshots are stored inside the screenshots folder.
 Login Page
 
 
-Signup Page  <img width="1917" height="1017" alt="Image" src="https://github.com/user-attachments/assets/66601a96-a036-4c31-b571-171b8c3ae642" />
 
+Signup Page
+
+<img width="1917" height="1017" alt="Image" src="https://github.com/user-attachments/assets/66601a96-a036-4c31-b571-171b8c3ae642" />
+
+Forgot Password 
 
 Forgot Password - Security Question Route
 
+<img width="1907" height="1006" alt="forget_password" src="https://github.com/user-attachments/assets/40be19b8-157c-4f03-a0b2-4eb7d3759be2" />
+
+
 Forgot Password - OTP Route
+
+<img width="1918" height="1018" alt="password_via_otp" src="https://github.com/user-attachments/assets/13b931f3-0b7f-46a1-8d58-a873e79c79ee" />
 
 OTP Email
 
 User Dashboard
 
+<img width="1918" height="1028" alt="user_iterface" src="https://github.com/user-attachments/assets/de2170d5-327a-4c9e-af75-7d0f746faef0" />
+
 Admin Dashboard
+
+<img width="1600" height="900" alt="admin_interface" src="https://github.com/user-attachments/assets/e5523341-10d2-4cdf-bbf7-12b455f18ea4" />
+
 
 Security Notes
 Passwords are never stored as plain text.
