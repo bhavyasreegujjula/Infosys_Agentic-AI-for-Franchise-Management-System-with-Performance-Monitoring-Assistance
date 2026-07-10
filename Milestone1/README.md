@@ -1,17 +1,17 @@
 # FRANCHISE ANALYTICS AND MANAGEMENT 
 
-##OVERVIEW:
+**OVERVIEW**:
 
 Milestone 1 is the first complete working version of the Infosys Franchise Analytics & Management authentication and dashboard application.
 This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users.he authentication module serves as the foundation for future milestones by providing secure user management and access control.
 The application is designed to run in Google Colab and is exposed publicly using ngrok.
 
 
-####FEATURES:
+**FEATURES**:
 
 The application includes three main public pages and two protected dashboards.
 
-1. Login Page
+1. ***Login Page:****
 
 The Login page allows users to sign in using either their username or email address.
 Fields:
@@ -26,7 +26,7 @@ The JWT token is stored in Streamlit session state.The dashboard is shown only w
 The error does not reveal whether the username/email or password was incorrect.
 
 
-2. Signup Page
+2. ****Signup Page:****
 
 The Signup page allows new users to create an account.
 Fields:
@@ -38,7 +38,7 @@ Fields:
 5.Security Question
 6.Security Answer
 
-#####Signup behavior:
+****Signup behavior:****
 
 a.All fields are mandatory.
 b.Username must be unique.
@@ -50,7 +50,7 @@ Passwords are hashed before storing.
 After successful signup, the user is redirected to the Login page.
 Signup does not issue a JWT token.
 
-3. Forgot Password Page
+3. ****Forgot Password Page:****
 
 The Forgot Password page supports two password recovery methods.
 1.Security Question Reset:
@@ -62,7 +62,7 @@ The user enters their registered email address and selects the security question
 The user enters their registered email address and selects the OTP route. A 6-digit OTP is generated and sent to the user's email through Gmail SMTP. The user must verify the OTP before setting a new password.
 
 
-4. User Dashboard:
+4.**** User Dashboard: ****
 
 After a normal user logs in successfully, the app displays the User Dashboard.
 The dashboard includes:
@@ -75,7 +75,7 @@ Security Status card
 System Health Index gauge chart
 
 
-5. Admin Dashboard
+5. ****Admin Dashboard: ****
 
 The Admin Dashboard uses a separate login that is defined directly in the code.
 
@@ -99,7 +99,7 @@ Forgot Password
 Security question reset
 OTP reset
 
-Email Format Rule:
+****Email Format Rule:****
 
 The email must follow this structure:
 At least 2 letters before @
@@ -109,7 +109,7 @@ At least 2 letters after the final .
 Example:
 ab@cd.ef
 
-Password Policy:
+****Password Policy:****
 
 Passwords must include:
 Minimum 8 characters
@@ -131,7 +131,7 @@ Dashboard access requires a valid JWT.
 Invalid or missing JWT redirects the user to Login.
 
 
-Tech Stack Used:
+****Tech Stack Used:****
 
 Technology               	Purpose
 Python             	Main programming language
@@ -144,17 +144,17 @@ pyngrok	            Public URL for the Colab app
 Google Colab	      Notebook runtime environment
 Gmail SMTP	        OTP email delivery
 
-#####Project Structure:
+**Project Structure:**
 
 How To Run The Notebook:
 
-Step 1: Install Dependencies
+****Step 1****: Install Dependencies
 
 Run this cell in Google Colab:
 
 !pip install -q streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
 
-Step 2: Create the Streamlit App
+****Step 2****: Create the Streamlit App
 
 
 Run the notebook cell that writes the full Streamlit application into app.py.
@@ -162,7 +162,7 @@ The cell should start with:
 
 %%writefile app.py
 
-Step 3: Add Colab Secrets
+****Step 3****: Add Colab Secrets
 
 
 Open the Secrets tab in Google Colab and add:
@@ -174,7 +174,7 @@ EMAIL_PASSWORD        Gmail App Password
 EMAIL_ADDRESS         Gmail address that sends the OTP
 
 
-Step 4: Start the App
+****Step 4****: Start the App
 
 
 Run the Streamlit/ngrok cell. The app runs on port 8501, and ngrok generates a public URL.
@@ -187,51 +187,51 @@ Normal User Login
 Normal users must first create an account from the Signup page. After signup, they can log in using either their username or email address.
 
 
-###Screenshots:
+**Screenshots**:
 
 All screenshots are stored inside the screenshots folder.
 
-###Login Page:
+****Login Page:****
 Registered users can securely log into the application.
 
 <img width="1863" height="897" alt="Screenshot (99)" src="https://github.com/user-attachments/assets/c1b4c14c-df5e-4c6b-8b79-a5801ae7df32" />
 
 
 
-###Signup Page:
+****Signup Page:****
 This page allows new users to create an account by entering their registration details.
 
 <img width="1743" height="876" alt="Screenshot (100)" src="https://github.com/user-attachments/assets/eff59b8f-98ac-418a-9f58-74ca6c14d26f" />
 
-Forgot Password :
+****Forgot Password :****
 
 
-Forgot Password - Security Question Route
+****Forgot Password - Security Question Route****
 
 Users verify the security question they gave at the time of account creation for resetting their password.
 
 <img width="1768" height="903" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/a23d01b4-a286-4efd-84ec-95452ff6c97d" />
 
 
-Forgot Password - OTP Route
+****Forgot Password - OTP Route****
 
 Users verify the OTP received through email before resetting their password.
 
 <img width="1796" height="885" alt="Screenshot (101)" src="https://github.com/user-attachments/assets/46c64e0e-98d6-4397-a4ad-f11234fbee94" />
 
-OTP Email
+****OTP Email****
 
 <img width="1526" height="758" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/2f238ebc-35a1-44f1-b6b5-21c18317c541" />
 
 
-User Dashboard:
+****User Dashboard:****
 
 Dashboard displayed after successful user authentication.
 
 <img width="1901" height="910" alt="Screenshot (104)" src="https://github.com/user-attachments/assets/f056fa3f-447f-4f86-bfc6-222f6d3ea991" />
 
 
-Admin Dashboard:
+****Admin Dashboard:****
 
 Separate dashboard providing administrative features and user management capabilities.
 
