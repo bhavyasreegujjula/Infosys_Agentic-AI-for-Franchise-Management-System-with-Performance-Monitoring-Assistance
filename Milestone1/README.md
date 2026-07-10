@@ -3,11 +3,11 @@
 OVERVIEW:
 
 Milestone 1 is the first complete working version of the Infosys Franchise Analytics & Management authentication and dashboard application.
-This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users.
+This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users.he authentication module serves as the foundation for future milestones by providing secure user management and access control.
 The application is designed to run in Google Colab and is exposed publicly using ngrok.
 
 
-What Was Built:
+FEATURES:
 
 The application includes three main public pages and two protected dashboards.
 
@@ -18,11 +18,8 @@ Fields:
 Username / Email
 Password
 Login behavior:
-Both fields are mandatory.
-On successful login, a JWT session token is created.
-The JWT token is stored in Streamlit session state.
-The dashboard is shown only when a valid JWT token exists.
-If login fails, the app shows one generic error message.
+Both fields are mandatory.On successful login, a JWT session token is created.
+The JWT token is stored in Streamlit session state.The dashboard is shown only when a valid JWT token exists.If login fails, the app shows one generic error message.
 The error does not reveal whether the username/email or password was incorrect.
 
 
@@ -36,10 +33,11 @@ Password
 Confirm Password
 Security Question
 Security Answer
+
 Signup behavior:
-All fields are mandatory.
-Username must be unique.
-Email must be unique.
+a.All fields are mandatory.
+b.Username must be unique.
+c.Email must be unique.
 The admin username is reserved and cannot be used by normal users.
 Security question is selected from a fixed list.
 Security answer is hashed before storing.
@@ -83,6 +81,7 @@ Email
 The admin dashboard never displays password data, password hashes, security answers, OTP values, or JWT tokens.
 Validation and Security Rules
 Mandatory Fields
+
 No form is submitted if a required field is empty. This applies to:
 Login
 Signup
@@ -99,7 +98,7 @@ At least 2 letters after the final .
 Example:
 ab@cd.ef
 
-Password Policy
+Password Policy:
 
 Passwords must include:
 Minimum 8 characters
@@ -136,39 +135,36 @@ Gmail SMTP	OTP email delivery
 
 Project Structure:
 
-Milestone1/
-|
-|-- README.md
-|-- app.py
-`-- screenshots/
-    |-- login.png
-    |-- signup.png
-    |-- forgot-password-security-question.png
-    |-- forgot-password-otp.png
-    |-- otp-email.png
-    |-- user-dashboard.png
-    `-- admin-dashboard.png
-
-    
 How To Run The Notebook:
 
 Step 1: Install Dependencies
+
+c
 Run this cell in Google Colab:
 !pip install -q streamlit streamlit-option-menu pyngrok pyjwt bcrypt plotly
 
 Step 2: Create the Streamlit App
+
+
 Run the notebook cell that writes the full Streamlit application into app.py.
 The cell should start with:
 %%writefile app.py
 
 Step 3: Add Colab Secrets
+
+
 Open the Secrets tab in Google Colab and add:
-NGROK_AUTHTOKEN
-EMAIL_PASSWORD
-NGROK_AUTHTOKEN is used to generate the public ngrok URL.
-EMAIL_PASSWORD must be a Gmail App Password, not the normal Gmail account password.
+
+Secret Name             Value
+JWT_SECRET            Random signing key for JWT session tokens
+NGROK_AUTHTOKEN       Your Authtoken 
+EMAIL_PASSWORD        Gmail App Password 
+EMAIL_ADDRESS         Gmail address that sends the OTP
+
 
 Step 4: Start the App
+
+
 Run the Streamlit/ngrok cell. The app runs on port 8501, and ngrok generates a public URL.
 Open the generated URL in your browser.
 Login Details
@@ -183,36 +179,42 @@ Screenshots:
 
 All screenshots are stored inside the screenshots folder.
 Login Page
+<img width="1863" height="897" alt="Screenshot (99)" src="https://github.com/user-attachments/assets/c1b4c14c-df5e-4c6b-8b79-a5801ae7df32" />
 
 
 
 Signup Page
 
-<img width="1917" height="1017" alt="Image" src="https://github.com/user-attachments/assets/66601a96-a036-4c31-b571-171b8c3ae642" />
+<img width="1743" height="876" alt="Screenshot (100)" src="https://github.com/user-attachments/assets/eff59b8f-98ac-418a-9f58-74ca6c14d26f" />
 
 Forgot Password 
 
 Forgot Password - Security Question Route
 
-<img width="1907" height="1006" alt="forget_password" src="https://github.com/user-attachments/assets/40be19b8-157c-4f03-a0b2-4eb7d3759be2" />
+<img width="1768" height="903" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/a23d01b4-a286-4efd-84ec-95452ff6c97d" />
 
 
 Forgot Password - OTP Route
 
-<img width="1918" height="1018" alt="password_via_otp" src="https://github.com/user-attachments/assets/13b931f3-0b7f-46a1-8d58-a873e79c79ee" />
+<img width="1796" height="885" alt="Screenshot (101)" src="https://github.com/user-attachments/assets/46c64e0e-98d6-4397-a4ad-f11234fbee94" />
 
 OTP Email
 
+<img width="1526" height="758" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/2f238ebc-35a1-44f1-b6b5-21c18317c541" />
+
+
 User Dashboard
 
-<img width="1918" height="1028" alt="user_iterface" src="https://github.com/user-attachments/assets/de2170d5-327a-4c9e-af75-7d0f746faef0" />
+<img width="1901" height="910" alt="Screenshot (104)" src="https://github.com/user-attachments/assets/f056fa3f-447f-4f86-bfc6-222f6d3ea991" />
+
 
 Admin Dashboard
 
-<img width="1600" height="900" alt="admin_interface" src="https://github.com/user-attachments/assets/e5523341-10d2-4cdf-bbf7-12b455f18ea4" />
+<img width="1920" height="929" alt="Screenshot (105)" src="https://github.com/user-attachments/assets/19306efd-93d3-4f9c-bd63-4708c1e20a48" />
 
 
-Security Notes
+Security Notes:
+
 Passwords are never stored as plain text.
 Passwords are hashed using bcrypt.
 Security answers are also hashed.
