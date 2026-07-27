@@ -204,15 +204,12 @@ Screenshots (placeholders)
 --------------------------
 Add the following images under `milestone2/screenshots/`. Use PNG or JPG. Filenames are chosen to be descriptive and ordered.
 
-- 01_app_login.png — App Home / Login UI (show Sign In / Register tabs)
+- Milestone 2/Screenshots/Home Page.png — App Home / Login UI (show Sign In / Register tabs)
 - 02_copilot_debate.png — AI Copilot Debate View showing agent bullets + synthesis
 - 03_agent2_weather.png — Agent 2: Demand Surge / Revenue vs Weather scatter
 - 04_agent3_heatmap.png — Agent 3: SKU criticality heatmap and reorder queue table
-- 05_admin_modelcard.png — Admin Dashboard ML Model Card and user management
+- 05_admin_modelcard.png — Admin Dashboard ML Model Card and user managemen
 
-Markdown embeds (example):
-
-Milestone 2/Screenshots/Home Page.png
 
 Troubleshooting & common gotchas
 --------------------------------
