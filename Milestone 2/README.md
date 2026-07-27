@@ -204,11 +204,18 @@ Screenshots (placeholders)
 --------------------------
 Add the following images under `milestone2/screenshots/`. Use PNG or JPG. Filenames are chosen to be descriptive and ordered.
 
-- ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png) — App Home / Login UI (show Sign In / Register tabs)
-- 02_copilot_debate.png — AI Copilot Debate View showing agent bullets + synthesis
-- 03_agent2_weather.png — Agent 2: Demand Surge / Revenue vs Weather scatter
-- 04_agent3_heatmap.png — Agent 3: SKU criticality heatmap and reorder queue table
-- 05_admin_modelcard.png — Admin Dashboard ML Model Card and user managemen
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png) —
+ -  App Home / Login UI (show Sign In / Register tabs)
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
+- AI Copilot Debate View showing agent bullets + synthesis
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
+- Agent 2: Demand Surge / Revenue vs Weather scatter
+-
+- Agent 3: SKU criticality heatmap and reorder queue table
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML%20MODEL%20CARD.png)
+- Admin Dashboard ML Model Card and user management
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png)
+-Screenshot of triggered lockout due to incorrect password entry
 
 
 Troubleshooting & common gotchas
