@@ -216,6 +216,7 @@ Screenshots (placeholders)
 
 
  - AI Copilot Debate View showing agent bullets + synthesis
+ - 
 ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
 
 
@@ -231,16 +232,26 @@ Screenshots (placeholders)
 
 
 - ML Pricing Calculator
-[imagealt(https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
+
+<img width="1920" height="909" alt="ML_PRICING_CALCULATOR" src="https://github.com/user-attachments/assets/acb4d63d-9696-49ff-93f1-c5b59cf05e19" />
 
 The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost Analyzer module. Users can enter shipment details including a distance of 250 kilometers, a shipment weight of 450 kilograms, traffic congestion level 2, and an Express delivery priority. Using machine learning models trained on supply chain datasets and accelerated by a Tesla T4 GPU environment, the system predicts a freight transportation cost of ₹8,089.65. The left navigation menu provides access to additional modules for route delay analysis, carrier compliance monitoring, analytics, and AI-powered supply chain intelligence.
 
-- Admin Dashboard ML Model Card and user management
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML%20MODEL%20CARD.png)
+
 
 
 -Screenshot of triggered lockout due to incorrect password entry
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png)
+
+
+
+
+-screenshot of otp cooldown
+
+<img width="1920" height="909" alt="OTP COOLDOWN" src="https://github.com/user-attachments/assets/f9155473-b930-4a7b-9a91-42224ca0437f" />
+
+
+The Reset Password page of the FranchiseOps AI Portal allows users to securely recover their accounts using either a Security Question or OTP sent via email. In this example, the user has selected OTP-based recovery. To enhance security and prevent OTP abuse, the system enforces an OTP cooldown period, displaying the message "Please wait 3 minutes before requesting another OTP." This mechanism limits repeated OTP requests, protects against spam or brute-force attempts, and ensures secure password recovery for registered users.
+
 
 
 
