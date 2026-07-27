@@ -133,6 +133,20 @@ Note: file paths are relative to the repository root and main branch.
   - Sidebar with tabs: AI Copilot, Agent pages, Analytics, Admin dashboard, Sign Out
   - Handles LLM warmup, agent model loading, chat history persistence and calls to agent renderers
 
+
+### 🛠️ Technology Stack
+
+| Category | Technology / Library | Description & Usage |
+| :----------------------- | :--- | :--- |
+| **Execution & Compute** | `Python 3.12`, `Jupyter` / `Google Colab` | Core environment running CUDA GPU acceleration |
+| **LLM & Inference Core** | `Qwen2.5-3B-Instruct`, `PyTorch` | 3B parameter model quantized with 4-bit `bitsandbytes` |
+| **Machine Learning** | `scikit-learn`, `XGBoost`, `joblib` | Predictive models for attrition, clustering, & demand |
+| **Data Processing** | `Pandas`, `NumPy` | Data manipulation, transformation, and tabular ops |
+| **Frontend UI & Charts** | `Streamlit`, `Plotly`, `Altair` | Multi-page web dashboard with interactive analytics |
+| **Database & Security** | `SQLite3`, `Bcrypt`, `PyJWT` | User authentication, token management, & password hashing |
+| **Integrations & Utilities** | `pyngrok`, `Faker`, `Kaggle API` | Tunneling, synthetic data generation, & dataset fetching |
+ 
+
 Quick start — Colab (recommended)
 ----------------------------------
 1. Open `FreightQuote_AI_Milestone2.ipynb` in Google Colab.
@@ -213,6 +227,11 @@ Screenshots (placeholders)
 
 "A login page titled 'FranchiseOps AI Portal' for an Enterprise Multi-Agent Franchise Intelligence System. The page includes tabs for Sign In, Register, and Reset Password, fields for email/username and password, and a large yellow 'Sign In' button. The top-right corner displays the status '... CONNECTING'."
 
+***Admin Dashboard***
+<img width="1600" height="900" alt="Admin Dashboard " src="https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/79e21a5e8573a434bc4373ebb9e7f72ea5642ef4/Milestone%202/Screenshots/ADD_DELETE_UNLOCK.png"/>
+
+
+"An admin dashboard is a page in 'FranchiseOps AI Portal' is a admin control block that gives the admin privilege add users (or) handlers like managers and other employees (or) remove access or lock the access and also decribes the state of the account either active (or) locked and also the designation of the users."
 
  ***AI COPILOT DEBATE VIEW***
  - 
@@ -238,7 +257,7 @@ The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost A
 
 ***TRIGGERED LOGOUT DUE TO INCORRECT PASSWORD ENTRY***
 
-https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/main/Milestone%202/Screenshots/ADD_DELETE_UNLOCK.png?raw=true
+<img width="1900" height="900" alt="Triggered Logout" src="https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/79e21a5e8573a434bc4373ebb9e7f72ea5642ef4/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png"/>
 
 The image shows the User Management section of the Admin Dashboard in the FranchiseOps AI Portal. It allows administrators to manage user accounts and monitor their access status. The page displays a list of registered users along with their email addresses, assigned roles, and account statuses. Administrators can perform actions such as adding new users, unlocking locked accounts, and deleting user accounts. In the example, one user account is marked as Locked with an Unlock option available, while active users can be managed using the Delete option. This module enhances system security and access control by enabling efficient user administration and account management.
 
