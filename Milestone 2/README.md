@@ -137,20 +137,24 @@ Quick start — Colab (recommended)
 ----------------------------------
 1. Open `FreightQuote_AI_Milestone2.ipynb` in Google Colab.
 2. Install dependencies with the notebook cell (or run locally):
+3. 
 
    pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
 
-3. Set Colab Secrets (Runtime → Manage session → Colab Secrets or use the Colab UI):
-   - HF_TOKEN (optional) — Hugging Face token for caching model weights
-   - NGROK_AUTHTOKEN (optional) — to expose Streamlit over the web
-   - KAGGLE_USERNAME, KAGGLE_KEY (optional) — for Kaggle dataset downloads
-   - EMAIL_ID, EMAIL_PASSWORD (optional) — for email OTPs (Gmail app passwords recommended)
 
-4. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
 
-5. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+4. Set Colab Secrets (Runtime → Manage session → Colab Secrets or use the Colab UI):
 
-6. Launch Streamlit inside Colab and expose via ngrok (not recommended for production):
+   - HF_TOKEN (optional) — Hugging Face token for caching model weights.
+   - NGROK_AUTHTOKEN (optional) — to expose Streamlit over the web.
+   - KAGGLE_USERNAME, KAGGLE_KEY (optional) — for Kaggle dataset downloads.
+   - EMAIL_ID, EMAIL_PASSWORD (optional) — for email OTPs (Gmail app passwords recommended).
+
+6. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
+
+7. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+
+8. Launch Streamlit inside Colab and expose via ngrok (not recommended for production):
 
    from pyngrok import ngrok
    ngrok.set_auth_token(<NGROK_AUTHTOKEN>)
@@ -203,19 +207,21 @@ Model caching and GPU notes
 Screenshots (placeholders)
 --------------------------
 
--  App Home / Login UI (show Sign In / Register tabs)
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png)
+-  Home Page / Login UI (show Sign In / Register tabs)
+
+<img width="1652" height="917" alt="Home Page" src="https://github.com/user-attachments/assets/f8ae9aa8-54fe-42b7-8b5b-27de9924e98b" />
+
+
+"A login page titled 'FranchiseOps AI Portal' for an Enterprise Multi-Agent Franchise Intelligence System. The page includes tabs for Sign In, Register, and Reset Password, fields for email/username and password, and a large yellow 'Sign In' button. The top-right corner displays the status '... CONNECTING'."
 
 
  - AI Copilot Debate View showing agent bullets + synthesis
 ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
 
 
-- Agent 2: Demand Surge / Revenue vs Weather scatter
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
+- ML Pricing Calculator
+[imagealt(https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
 
-
-- Agent 3: SKU criticality heatmap and reorder queue table
 
 
 - Admin Dashboard ML Model Card and user management
