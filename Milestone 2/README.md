@@ -204,7 +204,7 @@ Screenshots (placeholders)
 --------------------------
 Add the following images under `milestone2/screenshots/`. Use PNG or JPG. Filenames are chosen to be descriptive and ordered.
 
-- Milestone 2/Screenshots/Home Page.png — App Home / Login UI (show Sign In / Register tabs)
+- ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png) — App Home / Login UI (show Sign In / Register tabs)
 - 02_copilot_debate.png — AI Copilot Debate View showing agent bullets + synthesis
 - 03_agent2_weather.png — Agent 2: Demand Surge / Revenue vs Weather scatter
 - 04_agent3_heatmap.png — Agent 3: SKU criticality heatmap and reorder queue table
