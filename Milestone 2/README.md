@@ -219,10 +219,21 @@ Screenshots (placeholders)
 ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
 
 
+"The FranchiseOps AI dashboard displays the AI Copilot module with GPU acceleration enabled on Tesla T4 for the Qwen-2.5-3B language model. The page presents a conversational interface titled 'Unified AI Copilot — Total Franchise Intelligence.' After the user asks which outlet is performing well, the AI reports that OUT-101 Mumbai shows positive revenue growth and stable performance metrics based on integrated franchise intelligence data. Navigation options for workforce, outlets, inventory, analytics, and administration are provided in the left sidebar."
+
+-ML Model Card
+
+<img width="1433" height="839" alt="ML MODEL CARD" src="https://github.com/user-attachments/assets/51761d3f-04df-46df-bcd9-7fed0fa10e93" />
+
+
+"The FranchiseOps AI Admin Dashboard displays the ML Model Card page showing machine learning model performance for three intelligent agents. A table lists model names, R² scores, training data size, and timestamps for inventory and revenue prediction models. Summary cards at the bottom report 100% accuracy for the workforce attrition model, an R² score of 0.835 for revenue prediction, and an R² score of 0.987 for inventory forecasting. The Admin Dashboard is selected in the left navigation panel."
+
+
+
 - ML Pricing Calculator
 [imagealt(https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
 
-
+The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost Analyzer module. Users can enter shipment details including a distance of 250 kilometers, a shipment weight of 450 kilograms, traffic congestion level 2, and an Express delivery priority. Using machine learning models trained on supply chain datasets and accelerated by a Tesla T4 GPU environment, the system predicts a freight transportation cost of ₹8,089.65. The left navigation menu provides access to additional modules for route delay analysis, carrier compliance monitoring, analytics, and AI-powered supply chain intelligence.
 
 - Admin Dashboard ML Model Card and user management
 ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML%20MODEL%20CARD.png)
