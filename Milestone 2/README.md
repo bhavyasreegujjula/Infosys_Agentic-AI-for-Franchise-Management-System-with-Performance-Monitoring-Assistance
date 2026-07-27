@@ -212,12 +212,7 @@ Add the following images under `milestone2/screenshots/`. Use PNG or JPG. Filena
 
 Markdown embeds (example):
 
-![App Home - Login](screenshots/01_app_login.png)
-
-Tips for taking screenshots
-- Use a 1280x720 or 1920x1080 viewport for good readability on GitHub
-- Include relevant UI elements: sidebar tab, a chart, and a model card for context
-- If sharing publicly, redact real API keys, email addresses, or personal data
+Milestone 2/Screenshots/Home Page.png
 
 Troubleshooting & common gotchas
 --------------------------------
