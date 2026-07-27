@@ -202,20 +202,29 @@ Model caching and GPU notes
 
 Screenshots (placeholders)
 --------------------------
-Add the following images under `milestone2/screenshots/`. Use PNG or JPG. Filenames are chosen to be descriptive and ordered.
 
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png) —
- -  App Home / Login UI (show Sign In / Register tabs)
+-  App Home / Login UI (show Sign In / Register tabs)
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/8ee83deacc48ec5e096915d83bdcaa74667b808c/Milestone%202/Screenshots/Home%20Page.png)
+
+
+ - AI Copilot Debate View showing agent bullets + synthesis
 ![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
-- AI Copilot Debate View showing agent bullets + synthesis
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
+
+
 - Agent 2: Demand Surge / Revenue vs Weather scatter
--
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML_PRICING_CALCULATOR.png)
+
+
 - Agent 3: SKU criticality heatmap and reorder queue table
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML%20MODEL%20CARD.png)
+
+
 - Admin Dashboard ML Model Card and user management
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png)
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/ML%20MODEL%20CARD.png)
+
+
 -Screenshot of triggered lockout due to incorrect password entry
+![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png)
+
 
 
 Troubleshooting & common gotchas
