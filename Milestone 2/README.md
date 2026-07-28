@@ -128,7 +128,6 @@ High-level modules and their core responsibilities:
 | **Database & Security** | `SQLite3`, `Bcrypt`, `PyJWT` | User authentication, token management, & password hashing |
 | **Integrations & Utilities** | `pyngrok`, `Faker`, `Kaggle API` | Tunneling, synthetic data generation, & dataset fetching |
  
-
 ## Quick Start — Local (Developer Flow)
 
 1. **Clone repository and navigate to directory:**
@@ -136,10 +135,11 @@ High-level modules and their core responsibilities:
    git clone [https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git)
    cd Infosys_FranciseOps_AI/Milestone2
 
+
 2. **Set up a virtual environment:**
 
    python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. **Install dependencies:**
 
@@ -147,25 +147,24 @@ pip install -r requirements.txt
 
 
 4. **Configure environment variables:**
-Create a .env file in the root directory:
+Create a .env file in the root directory
 
 HF_TOKEN=your_huggingface_token
 NGROK_AUTHTOKEN=your_ngrok_token
 EMAIL_ID=your_email@gmail.com
-EMAIL_PASSWORD=your_app_password
+EMAIL_PASSWORD=your_app_passwod
 
-5. **Mount Google Drive in Colab when prompted**
+6. **Mount Google Drive in Colab when prompted**
+
  — The notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
 
-7. **Run the notebook sequentially:**
-   Install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+8. **Run the notebook sequentially:**
+   
+   Install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed     data → (optionally) train models.
 
-9. **Launch Streamlit inside Colab and expose via ngrok :**
+10. **Launch Streamlit inside Colab and expose via ngrok :**
 
-   from pyngrok import ngrok
-ngrok.set_auth_token("<NGROK_AUTHTOKEN>")
-ngrok.connect(8501)
-!streamlit run app.py
+  !streamlit run app.py
 
 
 
