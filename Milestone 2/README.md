@@ -2,74 +2,55 @@
 
 Comprehensive documentation for Milestone 2 of the FranchiseOps AI project — an enterprise multi-agent Franchise Operations platform focused on Supply Chain & Freight intelligence, inventory resilience, outlet tiering, and workforce retention.
 
-This README lives in milestone2/ and accompanies the Colab notebook `FreightQuote_AI_Milestone2.ipynb` which was used to author and demo Milestone 2.
+This README lives in `milestone2/` and accompanies the Colab notebook `FreightQuote_AI_Milestone2.ipynb`, which was used to author and demo Milestone 2.
 
-Table of contents
------------------
-- Project overview
-- Architecture & design
-- File-by-file module guide
-- Quick start (Colab and local)
-- Secrets, tokens & storage
-- Model caching and GPU notes
-- Screenshots (placeholders)
-- Troubleshooting & common gotchas
-- Security & privacy notes
-- Contribution & license
-- Contact
+## Table of Contents
 
-Project overview
-----------------
+- [Project Overview](#project-overview)
+- [Architecture & Design](#architecture--design)
+- [File-by-File Module Guide](#file-by-file-module-guide-detailed)
+- [Technology Stack](#%EF%B8%8F-technology-stack)
+- [Quick Start — Colab](#quick-start--colab-recommended)
+- [Quick Start — Local](#quick-start--local-developer-flow)
+- [Troubleshooting & Common Gotchas](#troubleshooting--common-gotchas)
+- [Security & Privacy Notes](#security--privacy-notes)
+- [Contribution & License](#contribution--license)
+
+---
+
+## Project Overview
+
 Milestone 2 delivers a working prototype of an enterprise-grade Franchise Operations assistant that integrates:
 
-- Local LLM orchestration (Qwen-2.5-3B, 4-bit NF4) for lightweight on-device reasoning and synthesis
-- Three specialized agents:
-  - Agent 1: Freight pricing & cost estimator (regressors trained on synthetic / Kaggle-sourced freight data)
-  - Agent 2: Outlet territory clustering & revenue vs. weather analytics (KMeans + regressors)
-  - Agent 3: Supply chain & inventory weather-aware reorder advisory (risk heatmaps + reorder queue)
-- Persistent SQLite datastore for outlets, staff, inventory, ML model metadata and chat history
-- Full authentication stack (signup/login/OTP/password history/lockout and admin controls)
-- Streamlit UI with a Neo‑Brutalist theme and multi-tab layout (AI Copilot, Agents, Analytics, Admin)
+- **Local LLM Orchestration:** Powered by `Qwen2.5-3B-Instruct` (4-bit NF4) for lightweight on-device reasoning and synthesis.
+- **Three Specialized Agents:**
+  - **Agent 1:** Freight pricing & cost estimator (regressors trained on synthetic / Kaggle-sourced freight data).
+  - **Agent 2:** Outlet territory clustering & revenue vs. weather analytics (K-Means + regressors).
+  - **Agent 3:** Supply chain & inventory weather-aware reorder advisory (risk heatmaps + reorder queue).
+- **Persistent SQLite Datastore:** Stores outlets, staff, inventory, ML model metadata, and chat history.
+- **Full Authentication Stack:** Signup, login with progressive lockout, forgot-password via security questions or email OTP.
+- **Streamlit UI:** Custom Neo-Brutalist theme with a multi-tab layout (AI Copilot, Agents, Analytics, Admin Dashboard).
 
-Architecture & design
----------------------
-High-level modules and their responsibilities:
+---
 
-- llm_engine.py
-  - Loads the Qwen-2.5-3B Instruct LLM in 4-bit NF4 using Hugging Face + bitsandbytes
-  - Provides fast helper functions: _run(), generate_json(), orchestrate_3_agents_query(), generate_debate_and_synthesis()
-  - Background warmup thread to avoid blocking first user interaction
+## Architecture & Design
 
-- config.py
-  - Centralizes secrets, storage paths, and model file locations. Reads from Colab secrets or environment variables.
+High-level modules and their core responsibilities:
 
-- auth.py
-  - Complete authentication flows for the demo: signup, login with progressive lockout, forgot-password via security question or email OTP
-  - Password strength checker and password reuse prevention (password_history table)
-  - Uses bcrypt for password hashing and JWT for session tokens
+- **`llm_engine.py`** — Loads `Qwen2.5-3B-Instruct` in 4-bit NF4 using Hugging Face and `bitsandbytes`. Provides fast helper functions (`_run()`, `generate_json()`, `orchestrate_3_agents_query()`, `generate_debate_and_synthesis()`) and background warmup.
+- **`config.py`** — Centralizes secrets, storage paths, and model directory locations from Colab secrets or environment variables.
+- **`auth.py`** — Authentication logic: signup, login with progressive lockout, security questions, email OTP, password strength checks, password reuse prevention (`password_history`), `bcrypt` hashing, and JWT tokens.
+- **`db.py`** — SQLite database initialization and schema migration helpers (`outlets`, `staff`, `inventory_records`, `users`, `ml_models`, `notifications`, `chat_history`).
+- **`ui_theme.py`** — Injects custom Neo-Brutalist CSS styling and renders standardized cards, headers, and risk badges across Streamlit pages.
+- **`agent2_franchise.py` & `agent3_franchise.py`** — Interactive visualization renderers (Plotly charts, heatmaps) integrated with LLM orchestrator advisory functions.
+- **`admin_dash.py`** — Admin control panel for user account management, GPU VRAM monitoring (`nvidia-smi`), ML model cards, and alert logging.
+- **`seed_data.py`, `notifications.py`, `weather_context.py`** — Utilities for seeding sample data, simulated multi-channel notification dispatch, and city weather impact profiling.
+- **`train_m2.py`** — Multi-algorithm ML model training pipeline comparing regressors and classifiers with automated Kaggle dataset fetching.
+- **`app.py`** — Main Streamlit entrypoint wiring together navigation tabs, session state, chat history persistence, and agent pages.
 
-- db.py
-  - SQLite initialization and helper functions for data storage and migrations
-  - Tables: outlets, staff, inventory_records, merged_datasets, users, ml_models, notifications, chat_history
+---
 
-- ui_theme.py
-  - Streamlit CSS injection and helper functions for consistent look-and-feel across pages
-
-- agent2_franchise.py, agent3_franchise.py
-  - Streamlit-renderable functions that build interactive visualisations (plotly charts, heatmaps) and call LLM orchestrator for advisory responses
-
-- admin_dash.py
-  - Admin controls (create/delete/unlock users), LLM & system health diagnostics, and ML model card showing stored metrics
-
-- seed_data.py, notifications.py, weather_context.py
-  - Synthetic seeding for sample outlets/staff/inventory
-  - Simulated weather impacts per city and notification logging
-
-- train_m2.py
-  - Multi-algorithm training pipeline (comparison of regressors & classifiers) with Kaggle dataset downloader fallback to synthetic data
-
-- app.py
-  - Main Streamlit application wiring everything together into sidebar tabs and pages
+### AI Copilot Debate View
 
 
 
@@ -230,7 +211,7 @@ Screenshots (placeholders)
 
 "A login page titled 'FranchiseOps AI Portal' for an Enterprise Multi-Agent Franchise Intelligence System. The page includes tabs for Sign In, Register, and Reset Password, fields for email/username and password, and a large yellow 'Sign In' button. The top-right corner displays the status '... CONNECTING'."
 
- ###AI COPILOT DEBATE VIEW
+ ### AI COPILOT DEBATE VIEW
  - 
 <img width="1920" height="913" alt="AI Copilot" src="https://github.com/user-attachments/assets/ab54ec9b-bb39-489f-b2bb-e6efe733fb32" />
 
