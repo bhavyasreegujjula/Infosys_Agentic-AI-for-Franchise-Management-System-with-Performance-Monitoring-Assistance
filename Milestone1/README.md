@@ -1,84 +1,37 @@
-# FRANCHISE ANALYTICS AND MANAGEMENT 
+# FRANCHISE ANALYTICS AND MANAGEMENT
 
-**OVERVIEW**:
+## Overview
 
 Milestone 1 is the first complete working version of the Infosys Franchise Analytics & Management authentication and dashboard application.
-This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users.he authentication module serves as the foundation for future milestones by providing secure user management and access control.
+
+This milestone focuses on building a secure login system inside a single Streamlit app. It supports user registration, login, password recovery, JWT-based session handling, a user analytics dashboard, and a separate admin dashboard for managing registered users. The authentication module serves as the foundation for future milestones by providing secure user management and access control.
+
 The application is designed to run in Google Colab and is exposed publicly using ngrok.
 
+## Features
 
-**FEATURES**:
+The application includes three main public pages and two protected dashboards:
 
-The application includes three main public pages and two protected dashboards.
+1. **Login Page**
+   - Sign in using either username or email address.
+   - Generates a JWT session token stored in Streamlit session state upon successful authentication.
+   - Displays a single generic error message on failure to prevent user enumeration.
 
-1. **Login Page:**
+2. **Signup Page**
+   - Register new user accounts (Username, Email, Password, Confirm Password, Security Question, Security Answer).
+   - Enforces unique usernames/emails and prevents registration of reserved admin usernames.
+   - Hashes passwords and security answers securely before database storage.
 
-The Login page allows users to sign in using either their username or email address.
-Fields:
+3. **Forgot Password Page**
+   - **Security Question Reset:** Select security question route, answer the stored security question, and set a new password.
+   - **OTP Reset:** Receive a 6-digit verification OTP sent via Gmail SMTP and verify before setting a new password.
 
-Username / Email
-Password
+4. **User Dashboard**
+   - Displays analytics widgets including Documents Indexed, Searches Today, Efficiency Score, Security Status, and a System Health Index gauge chart.
 
-Login behavior:
-
-Both fields are mandatory.On successful login, a JWT session token is created.
-The JWT token is stored in Streamlit session state.The dashboard is shown only when a valid JWT token exists.If login fails, the app shows one generic error message.
-The error does not reveal whether the username/email or password was incorrect.
-
-
-2. **Signup Page:**
-
-The Signup page allows new users to create an account.
-Fields:
-
-1.Username
-2.Email
-3.Password
-4.Confirm Password
-5.Security Question
-6.Security Answer
-
-3. **Signup behavior:**
-
-a.All fields are mandatory.
-b.Username must be unique.
-c.Email must be unique.
-The admin username is reserved and cannot be used by normal users.
-Security question is selected from a fixed list.
-Security answer is hashed before storing.
-Passwords are hashed before storing.
-After successful signup, the user is redirected to the Login page.
-Signup does not issue a JWT token.
-
-3. **Forgot Password Page:**
-
-The Forgot Password page supports two password recovery methods:
-  1.****Security Question Reset:****
-
-The user enters their registered email address and selects the security question route. If the email exists, the stored security question is displayed. The user must answer correctly before setting a new password.
-
-  2.****OTP Reset:****
-
-The user enters their registered email address and selects the OTP route. A 6-digit OTP is generated and sent to the user's email through Gmail SMTP. The user must verify the OTP before setting a new password.
-
-
-4. **User Dashboard:**
-
-After a normal user logs in successfully, the app displays the User Dashboard.
-The dashboard includes:
-Analytics dashboard header
-User name badge
-Documents Indexed card
-Searches Today card
-Efficiency Score card
-Security Status card
-System Health Index gauge chart
-
-
-5. **Admin Dashboard:**
-
-The Admin Dashboard uses a separate login that is defined directly in the code.
-
+5. **Admin Dashboard**
+   - Dedicated administrative access (`admin` / `Admin@123`).
+   - Displays a clean list of registered users (Username and Email only) with zero exposure of sensitive password hashes or security credentials.
 ****Admin credentials:****
 
 Username: admin
@@ -89,15 +42,14 @@ Username
 Email
 
 The admin dashboard never displays password data, password hashes, security answers, OTP values, or JWT tokens.
-Validation and Security Rules
-Mandatory Fields
 
-No form is submitted if a required field is empty. This applies to:
-Login
-Signup
-Forgot Password
-Security question reset
-OTP reset
+## Validation & Security Rules
+
+- **Mandatory Fields:** Strict frontend validation across all authentication forms.
+- **Email Format Rule:** Requires standard email structure (`ab@cd.ef`).
+- **Password Policy:** Minimum 8 characters with at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (e.g., `Bhavya@123`). Prevents reuse of current passwords during resets.
+- **JWT Session Handling:** Required for accessing protected dashboards. Invalid or missing tokens automatically redirect to the Login page.
+
 
 ****Email Format Rule:****
 
@@ -243,18 +195,13 @@ Separate dashboard providing administrative features and user management capabil
 <img width="1920" height="929" alt="Screenshot (105)" src="https://github.com/user-attachments/assets/19306efd-93d3-4f9c-bd63-4708c1e20a48" />
 
 
-Security Notes:
+## Security Notes
 
-Passwords are never stored as plain text.
-Passwords are hashed using bcrypt.
-Security answers are also hashed.
-JWT is used to control dashboard access.
-Admin credentials are separate from signup accounts.
-Admin dashboard only displays username and email.
-Password hashes and security answers are never displayed.
-OTP verification is required before OTP-based password reset.
-Users cannot reset their password to the same old password.
+Passwords and security answers are stored strictly as bcrypt hashes.
 
+Admin views restrict sensitive fields from being displayed in the UI.
+
+Password resets enforce OTP/Security Question verification and forbid reusing current passwords.
 
 Milestone 1 delivers a complete authentication and dashboard workflow. It includes secure signup, login, forgot password recovery using security question and OTP, JWT session handling, password validation, a user analytics dashboard, and a separate admin dashboard.
 This milestone creates the foundation for future improvements such as advanced franchise analytics, user activity logs, database deployment, role permissions, and production hosting.
