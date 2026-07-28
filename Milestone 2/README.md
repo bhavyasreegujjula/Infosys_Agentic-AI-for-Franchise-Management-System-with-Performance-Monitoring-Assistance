@@ -149,10 +149,10 @@ pip install -r requirements.txt
 4. **Configure environment variables:**
 Create a .env file in the root directory
 
-HF_TOKEN=your_huggingface_token
-NGROK_AUTHTOKEN=your_ngrok_token
-EMAIL_ID=your_email@gmail.com
-EMAIL_PASSWORD=your_app_passwod
+ 1.HF_TOKEN=your_huggingface_token
+ 2.NGROK_AUTHTOKEN=your_ngrok_token
+ 3.EMAIL_ID=your_email@gmail.com
+ 4.EMAIL_PASSWORD=your_app_passwod
 
 6. **Mount Google Drive in Colab when prompted**
 
@@ -273,11 +273,6 @@ Consider configuring rate-limiting at the reverse proxy or API gateway level for
 Contributions are welcome! Please open an issue or pull request for any bug fixes or feature requests.
 
 Distributed under the MIT License. See LICENSE for more information.
-
-If you want a formal license added, choose one of the following and I will add it to the repo:
-- MIT
-- Apache-2.0
-- GPL-3.0
 
 Contributions: Open a PR with a clear description and tests where applicable. For large changes, open an issue first for design discussion.
 
