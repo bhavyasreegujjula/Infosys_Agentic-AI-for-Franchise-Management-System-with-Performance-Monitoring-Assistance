@@ -71,64 +71,65 @@ High-level modules and their responsibilities:
 - app.py
   - Main Streamlit application wiring everything together into sidebar tabs and pages
 
-File-by-file module guide (detailed)
------------------------------------
-Note: file paths are relative to the repository root and main branch.
 
-- milestone2/ (this folder)
-  - README.md  (this file)
-  - screenshots/  (recommended folder to add UI/visual assets)
 
-- llm_engine.py — LLM orchestration & fast generation
-  - Key functions: get_model(), warmup_llm(), _run(), generate_json(), orchestrate_3_agents_query(), generate_debate_and_synthesis()
-  - Caching: honors HF_TOKEN and CACHE_DIR for Hugging Face cache to reduce re-downloads
+## File-by-File Module Guide (Detailed)
 
-- config.py — configuration & secret retrieval
-  - Reads secrets from Colab userdata or environment variables
-  - Defines STORAGE_DIR, DB_PATH and paths where models and caches are stored
+> **Note:** File paths are relative to the repository root and main branch.
 
-- auth.py — authentication portal for Streamlit
-  - init_auth(): creates users & password_history tables and a seeded Administrator account if missing
-  - render_auth_portal(): Streamlit UI for Sign In / Register / Reset Password with progressive lockout
-  - Security features: bcrypt, JWT, OTP expiry, resend cooldowns, password history to prevent reuse
+- **`milestone2/`** (This directory)
+  - `README.md` — Project documentation and setup guide.
+  - `screenshots/` — Visual UI assets and module screenshots.
 
-- db.py — database initialization and utilities
-  - init_db(): idempotent creation of tables, safe migrations (ALTER TABLE wrapped in try/except)
-  - save_ml_metrics(), load_chat_history(), save_chat_message(), clear_chat_history()
+- **`llm_engine.py`** — LLM Orchestration & Generation
+  - **Key Functions:** `get_model()`, `warmup_llm()`, `_run()`, `generate_json()`, `orchestrate_3_agents_query()`, `generate_debate_and_synthesis()`
+  - **Caching:** Honors `HF_TOKEN` and `CACHE_DIR` for Hugging Face caching to reduce redundant downloads.
 
-- ui_theme.py — CSS + helper rendering functions for consistent UI
-  - NEO_BRUTALIST_CSS: fonts, card styles, badges
-  - inject_css(), apply_theme(), render_header(), render_card(), risk_badge()
+- **`config.py`** — Configuration & Secret Retrieval
+  - Reads secrets from Google Colab `userdata` or environment variables.
+  - Defines `STORAGE_DIR`, `DB_PATH`, and directory paths where models and caches are stored.
 
-- agent2_franchise.py — outlet territory clustering & weather analytics
-  - Visualizations: revenue vs cost scatter, demand surge bar charts, revenue vs weather correlation with trendline
-  - Predictive simulate: a local heuristic or KMeans model to estimate Tier cluster for new outlets
-  - AI Advisory uses llm_engine.orchestrate_3_agents_query()
+- **`auth.py`** — Authentication Portal for Streamlit
+  - `init_auth()` — Creates `users` and `password_history` tables and seeds an initial Administrator account if missing.
+  - `render_auth_portal()` — Renders the Streamlit UI for Sign In, Registration, and Password Reset with progressive lockout.
+  - **Security Features:** Implements `bcrypt` hashing, JWT handling, OTP expiry, resend cooldowns, and password history tracking to prevent reuse.
 
-- agent3_franchise.py — SKU risk heatmaps & reorder plan generator
-  - SKU heatmap visualisation (plotly.imshow)
-  - Reorder priority queue table with urgency mapping
-  - JSON reorder plan generation via llm_engine.generate_json()
+- **`db.py`** — Database Initialization & Utilities
+  - `init_db()` — Handles idempotent creation of tables and safe schema migrations (wrapping `ALTER TABLE` in `try/except`).
+  - **Helper Methods:** `save_ml_metrics()`, `load_chat_history()`, `save_chat_message()`, and `clear_chat_history()`.
 
-- admin_dash.py — full admin control panel
-  - System Health: GPU VRAM usage (nvidia-smi) and LLM status
-  - User Management: add/unlock/delete users, password history table handling
-  - ML Model Card: view ml_models table and quick summary metrics
-  - Live Alert Log: read notifications table
+- **`ui_theme.py`** — Styling & Consistent UI Rendering
+  - `NEO_BRUTALIST_CSS` — Centralized styles for custom fonts, card layouts, and status badges.
+  - **UI Helpers:** `inject_css()`, `apply_theme()`, `render_header()`, `render_card()`, and `risk_badge()`.
 
-- notifications.py — simulated multi-channel alert center
-  - send_alert(channel, recipient, subject, message) persists into notifications table and prints a console record
+- **`agent2_franchise.py`** — Territory Clustering & Weather Analytics
+  - **Visualizations:** Revenue vs. Cost scatter plots, demand surge bar charts, and revenue vs. weather correlation graphs with trendlines.
+  - **Predictive Simulation:** Utilizes local heuristics/K-Means models to estimate tier clustering for new outlets.
+  - **AI Advisory:** Leverages `llm_engine.orchestrate_3_agents_query()`.
 
-- seed_data.py — pre-seed realistic sample data
-  - seed_all(): populates outlets, staff, inventory_records, calls send_alert() once initialization finishes
+- **`agent3_franchise.py`** — SKU Risk Heatmaps & Reorder Planning
+  - Displays interactive SKU risk heatmaps (`plotly.imshow`).
+  - Renders a reorder priority queue with urgency mapping.
+  - Generates structured JSON reorder plans via `llm_engine.generate_json()`.
 
-- weather_context.py — simulated city weather profiles
-  - get_city_weather(city_name): returns demand impact %, supply delays, attrition stress indicators used to influence downstream analytics
+- **`admin_dash.py`** — Administrator Control Panel
+  - **System Health:** GPU VRAM monitoring (`nvidia-smi`) and LLM status checks.
+  - **User Management:** Add, unlock, or delete user accounts, and view password history tables.
+  - **ML Model Card:** Inspects the `ml_models` table and provides quick summary metrics.
+  - **Live Alert Log:** Reads records directly from the `notifications` table.
 
-- train_m2.py — model training pipeline
-  - Kaggle downloader fallback to synthetic data
-  - compare_regressors() and compare_classifiers() to select the best performing algorithm and persist with joblib
+- **`notifications.py`** — Simulated Multi-Channel Alert Center
+  - `send_alert(channel, recipient, subject, message)` — Persists alerts to the `notifications` table and prints console logs.
 
+- **`seed_data.py`** — Sample Data Seeding
+  - `seed_all()` — Populates initial sample data for outlets, staff, and inventory records, invoking `send_alert()` upon completion.
+
+- **`weather_context.py`** — City Weather Profiles
+  - `get_city_weather(city_name)` — Returns demand impact percentages, supply delays, and attrition stress indicators used in downstream analytics.
+
+- **`train_m2.py`** — Model Training Pipeline
+  - Multi-algorithm training pipeline comparing regressors and classifiers.
+  - Features an automated Kaggle dataset downloader with a fallback to synthetic data generation.
 - app.py — Streamlit app entrypoint
   - Sidebar with tabs: AI Copilot, Agent pages, Analytics, Admin dashboard, Sign Out
   - Handles LLM warmup, agent model loading, chat history persistence and calls to agent renderers
@@ -147,31 +148,35 @@ Note: file paths are relative to the repository root and main branch.
 | **Integrations & Utilities** | `pyngrok`, `Faker`, `Kaggle API` | Tunneling, synthetic data generation, & dataset fetching |
  
 
-Quick start — Colab (recommended)
-----------------------------------
+## Quick Start — Colab (Recommended)
+
 1. Open `FreightQuote_AI_Milestone2.ipynb` in Google Colab.
-2. Install dependencies with the notebook cell (or run locally):
-3. pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
+2. Install dependencies:
+   ```bash
+   pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
 
 
 
-4. Set Colab Secrets (Runtime → Manage session → Colab Secrets or use the Colab UI):
+3.Set Colab Secrets (Runtime → Manage session → Colab Secrets):
 
-   - HF_TOKEN (optional) — Hugging Face token for caching model weights.
-   - NGROK_AUTHTOKEN (optional) — to expose Streamlit over the web.
-   - KAGGLE_USERNAME, KAGGLE_KEY (optional) — for Kaggle dataset downloads.
-   - EMAIL_ID, EMAIL_PASSWORD (optional) — for email OTPs (Gmail app passwords recommended).
+HF_TOKEN (optional) — Hugging Face token for caching model weights.
 
-6. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
+NGROK_AUTHTOKEN (optional) — To expose Streamlit over the web.
 
-7. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+KAGGLE_USERNAME, KAGGLE_KEY (optional) — For Kaggle dataset downloads.
 
-8. Launch Streamlit inside Colab and expose via ngrok (not recommended for production):
+EMAIL_ID, EMAIL_PASSWORD (optional) — For email OTPs (Gmail app passwords recommended).
+
+4. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
+
+5. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+
+6. Launch Streamlit inside Colab and expose via ngrok :
 
    from pyngrok import ngrok
-   ngrok.set_auth_token(<NGROK_AUTHTOKEN>)
-   ngrok.connect(8501)
-   !streamlit run app.py
+ngrok.set_auth_token("<NGROK_AUTHTOKEN>")
+ngrok.connect(8501)
+!streamlit run app.py
 
 Quick start — Local (developer flow)
 -----------------------------------
@@ -219,33 +224,27 @@ Model caching and GPU notes
 Screenshots (placeholders)
 --------------------------
 
-***HOME PAGE***
+### HOME PAGE
 <img width="1652" height="917" alt="Home Page" src="https://github.com/user-attachments/assets/f8ae9aa8-54fe-42b7-8b5b-27de9924e98b" />
 
 
 "A login page titled 'FranchiseOps AI Portal' for an Enterprise Multi-Agent Franchise Intelligence System. The page includes tabs for Sign In, Register, and Reset Password, fields for email/username and password, and a large yellow 'Sign In' button. The top-right corner displays the status '... CONNECTING'."
 
-***ADMIN DASHBOARD***
-<img width="1600" height="900" alt="Admin Dashboard " src="https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/79e21a5e8573a434bc4373ebb9e7f72ea5642ef4/Milestone%202/Screenshots/ADD_DELETE_UNLOCK.png"/>
-
-
-"An admin dashboard is a page in 'FranchiseOps AI Portal' is a admin control block that gives the admin privilege add users (or) handlers like managers and other employees (or) remove access or lock the access and also decribes the state of the account either active (or) locked and also the designation of the users."
-
- ***AI COPILOT DEBATE VIEW***
+ ###AI COPILOT DEBATE VIEW
  - 
 <img width="1920" height="913" alt="AI Copilot" src="https://github.com/user-attachments/assets/ab54ec9b-bb39-489f-b2bb-e6efe733fb32" />
 
 
 "The FranchiseOps AI dashboard displays the AI Copilot module with GPU acceleration enabled on Tesla T4 for the Qwen-2.5-3B language model. The page presents a conversational interface titled 'Unified AI Copilot — Total Franchise Intelligence.' After the user asks which outlet is performing well, the AI reports that OUT-101 Mumbai shows positive revenue growth and stable performance metrics based on integrated franchise intelligence data. Navigation options for workforce, outlets, inventory, analytics, and administration are provided in the left sidebar."
 
-***ML MODEL CARD***
+### ML MODEL CARD
 
 <img width="1433" height="839" alt="ML MODEL CARD" src="https://github.com/user-attachments/assets/c78a3e1a-9d45-4829-bfa0-9837502126d9" />
 
 "The FranchiseOps AI Admin Dashboard displays the ML Model Card page showing machine learning model performance for three intelligent agents. A table lists model names, R² scores, training data size, and timestamps for inventory and revenue prediction models. Summary cards at the bottom report 100% accuracy for the workforce attrition model, an R² score of 0.835 for revenue prediction, and an R² score of 0.987 for inventory forecasting. The Admin Dashboard is selected in the left navigation panel."
 
 
-***ML PRICING CALCULATOR***
+### ML PRICING CALCULATOR
 
 <img width="1920" height="909" alt="ML_PRICING_CALCULATOR" src="https://github.com/user-attachments/assets/d6e58ad7-f7a9-4083-898c-9a0128644587" />
 
@@ -254,7 +253,7 @@ The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost A
 
 
 
-***TRIGGERED LOGOUT DUE TO INCORRECT PASSWORD ENTRY***
+### TRIGGERED ACCOUNT LOGOUT
 
 
 <img width="1772" height="903" alt="TRIGGERED LOCKOUT" src="https://github.com/user-attachments/assets/3ee44b82-1e0f-4cf0-bb4c-d68809e1b9de" />
@@ -264,7 +263,7 @@ The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost A
 The image shows the User Management section of the Admin Dashboard in the FranchiseOps AI Portal. It allows administrators to manage user accounts and monitor their access status. The page displays a list of registered users along with their email addresses, assigned roles, and account statuses. Administrators can perform actions such as adding new users, unlocking locked accounts, and deleting user accounts. In the example, one user account is marked as Locked with an Unlock option available, while active users can be managed using the Delete option. This module enhances system security and access control by enabling efficient user administration and account management.
 
 
-***OTP COOLDOWN***
+### OTP COOLDOWN
 
 <img width="1920" height="909" alt="OTP COOLDOWN" src="https://github.com/user-attachments/assets/f9155473-b930-4a7b-9a91-42224ca0437f" />
 
@@ -272,31 +271,33 @@ The image shows the User Management section of the Admin Dashboard in the Franch
 The Reset Password page of the FranchiseOps AI Portal allows users to securely recover their accounts using either a Security Question or OTP sent via email. In this example, the user has selected OTP-based recovery. To enhance security and prevent OTP abuse, the system enforces an OTP cooldown period, displaying the message "Please wait 3 minutes before requesting another OTP." This mechanism limits repeated OTP requests, protects against spam or brute-force attempts, and ensures secure password recovery for registered users.
 
 
-***ADD/DELETE/UNLOCK***
+### ADD/DELETE/UNLOCK(Admin Dashboard)
 <img width="1914" height="925" alt="ADD_DELETE_UNLOCK" src="https://github.com/user-attachments/assets/dfdf5eb6-eebf-4c5c-ac03-1b121a3cbdbf" />
 
 This screen displays the Admin Dashboard & System Intelligence module of the FranchiseOps AI Portal. It enables administrators to manage user accounts securely through role-based access control. The dashboard shows the current status of all registered users, including their usernames, email addresses, assigned roles, and account status (Active or Locked).
 
 Troubleshooting & common gotchas
 --------------------------------
-- Model loading errors:
-  - Ensure HF_TOKEN is valid if private models are required
-  - Check bitsandbytes installation and CUDA toolkit compatibility with your PyTorch version
-- SQLite locked / concurrent access issues:
-  - db.get_conn uses check_same_thread=False which relaxes some constraints; if you still get locks, close other DB connections and ensure a single process writes at a time
-- Email OTP failures:
-  - Confirm EMAIL_ID and EMAIL_PASSWORD (app password) and allow less‑secure app access or app password in Gmail settings
-- ngrok token and public_url:
-  - If ngrok fails to connect, confirm the token and region limits on free plans
 
-Security & privacy notes
-------------------------
-This repository includes convenience defaults intended for demos only. For production deployment, do the following before exposing the app:
+- **Model loading errors:**
+  - Ensure `HF_TOKEN` is valid if private models are required.
+  - Check `bitsandbytes` installation and CUDA toolkit compatibility with your PyTorch version.
+- **SQLite locked / concurrent access issues:**
+  - `db.get_conn` uses `check_same_thread=False` which relaxes some constraints. If you still experience locks, close other DB connections and ensure a single process writes at a time.
+- **Email OTP failures:**
+  - Confirm `EMAIL_ID` and `EMAIL_PASSWORD` (Gmail App Password) and ensure 2-step verification and App Passwords are configured properly.
+- **ngrok token and public_url:**
+  - If ngrok fails to connect, confirm the token and region limits on free plans.
+ 
+  
+## Security & Privacy Notes
 
-- Never commit secrets (HF_TOKEN, NGROK_AUTHTOKEN, EMAIL_PASSWORD) into the repo
-- Use a secrets manager (Vault, AWS Secrets Manager, GitHub Actions Secrets) and environment variables for runtime
-- Use HTTPS endpoints, harden the SMTP relay, and enforce strong password policies
-- Consider removing or locking the OTP resend window logic for rate-limiting in high‑traffic setups
+This repository includes convenience defaults intended for demos only. For production deployment, complete the following before exposing the app:
+
+- Never commit secrets (`HF_TOKEN`, `NGROK_AUTHTOKEN`, `EMAIL_PASSWORD`) into the repository.
+- Use a secrets manager (Vault, AWS Secrets Manager, GitHub Actions Secrets) and environment variables for runtime.
+- Use HTTPS endpoints, harden the SMTP relay, and enforce strong password policies.
+- Consider configuring rate-limiting at the reverse proxy or API gateway level for high-traffic setups.
 
 Contribution & license
 ----------------------
@@ -312,19 +313,4 @@ Change Log (Milestone highlights)
 - M2.0: Core modules implemented (llm_engine, auth, db, agent visualisers, admin dashboard)
 - M2.1: LLM 4-bit NF4 integration and background warmup thread
 - M2.2: AI Copilot debate view and single-pass synthesis prompt template
-
-Contact
--------
-Maintainer: bhavyasreegujjula
-Email: bhavyasreegujjula@gmail.com
-
-
----
-
-If you'd like I can:
-- Add a `milestone2/screenshots/` directory and upload placeholder images (1x transparent PNG per slot)
-- Add a LICENSE file with your preferred license
-- Create a short README at the repo root pointing to all milestones
-
-Commit message: "Expand milestone2 README with detailed documentation and screenshot slots"
 
