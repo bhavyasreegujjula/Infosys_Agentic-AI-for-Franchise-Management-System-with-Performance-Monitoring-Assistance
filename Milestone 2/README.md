@@ -257,6 +257,7 @@ The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost A
 ***TRIGGERED LOGOUT DUE TO INCORRECT PASSWORD ENTRY***
 
 
+<img width="1772" height="903" alt="TRIGGERED LOCKOUT" src="https://github.com/user-attachments/assets/3ee44b82-1e0f-4cf0-bb4c-d68809e1b9de" />
 
 
 
@@ -271,7 +272,10 @@ The image shows the User Management section of the Admin Dashboard in the Franch
 The Reset Password page of the FranchiseOps AI Portal allows users to securely recover their accounts using either a Security Question or OTP sent via email. In this example, the user has selected OTP-based recovery. To enhance security and prevent OTP abuse, the system enforces an OTP cooldown period, displaying the message "Please wait 3 minutes before requesting another OTP." This mechanism limits repeated OTP requests, protects against spam or brute-force attempts, and ensures secure password recovery for registered users.
 
 
+***ADD/DELETE/UNLOCK***
+<img width="1914" height="925" alt="ADD_DELETE_UNLOCK" src="https://github.com/user-attachments/assets/dfdf5eb6-eebf-4c5c-ac03-1b121a3cbdbf" />
 
+This screen displays the Admin Dashboard & System Intelligence module of the FranchiseOps AI Portal. It enables administrators to manage user accounts securely through role-based access control. The dashboard shows the current status of all registered users, including their usernames, email addresses, assigned roles, and account status (Active or Locked).
 
 Troubleshooting & common gotchas
 --------------------------------
