@@ -16,7 +16,7 @@ This README lives in `milestone2/` and accompanies the Colab notebook `FreightQu
 - [Security & Privacy Notes](#security--privacy-notes)
 - [Contribution & License](#contribution--license)
 
----
+
 
 ## Project Overview
 
@@ -111,7 +111,8 @@ High-level modules and their core responsibilities:
 - **`train_m2.py`** — Model Training Pipeline
   - Multi-algorithm training pipeline comparing regressors and classifiers.
   - Features an automated Kaggle dataset downloader with a fallback to synthetic data generation.
-- app.py — Streamlit app entrypoint
+    
+- **app.py** — Streamlit app entrypoint
   - Sidebar with tabs: AI Copilot, Agent pages, Analytics, Admin dashboard, Sign Out
   - Handles LLM warmup, agent model loading, chat history persistence and calls to agent renderers
 
@@ -150,8 +151,11 @@ pip install -r requirements.txt
 Create a .env file in the root directory
 
  1.HF_TOKEN=your_huggingface_token
+ 
  2.NGROK_AUTHTOKEN=your_ngrok_token
+ 
  3.EMAIL_ID=your_email@gmail.com
+ 
  4.EMAIL_PASSWORD=your_app_passwod
 
 6. **Mount Google Drive in Colab when prompted**
