@@ -129,30 +129,36 @@ High-level modules and their core responsibilities:
 | **Integrations & Utilities** | `pyngrok`, `Faker`, `Kaggle API` | Tunneling, synthetic data generation, & dataset fetching |
  
 
-## Quick Start — Colab (Recommended)
+## Quick Start — Local (Developer Flow)
 
-1. Open `FreightQuote_AI_Milestone2.ipynb` in Google Colab.
-2. Install dependencies:
+1. **Clone repository and navigate to directory:**
    ```bash
-   pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
+   git clone [https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git)
+   cd Infosys_FranciseOps_AI/Milestone2
+
+2. Set up a virtual environment:
+
+   python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3.Install dependencies:
+
+pip install -r requirements.txt
 
 
+4. Configure environment variables:
+Create a .env file in the root directory:
 
-3.Set Colab Secrets (Runtime → Manage session → Colab Secrets):
+HF_TOKEN=your_huggingface_token
+NGROK_AUTHTOKEN=your_ngrok_token
+EMAIL_ID=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password
 
-HF_TOKEN (optional) — Hugging Face token for caching model weights.
+5. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
 
-NGROK_AUTHTOKEN (optional) — To expose Streamlit over the web.
+6. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
 
-KAGGLE_USERNAME, KAGGLE_KEY (optional) — For Kaggle dataset downloads.
-
-EMAIL_ID, EMAIL_PASSWORD (optional) — For email OTPs (Gmail app passwords recommended).
-
-4. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
-
-5. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
-
-6. Launch Streamlit inside Colab and expose via ngrok :
+7. Launch Streamlit inside Colab and expose via ngrok :
 
    from pyngrok import ngrok
 ngrok.set_auth_token("<NGROK_AUTHTOKEN>")
@@ -275,13 +281,20 @@ Troubleshooting & common gotchas
 
 This repository includes convenience defaults intended for demos only. For production deployment, complete the following before exposing the app:
 
-- Never commit secrets (`HF_TOKEN`, `NGROK_AUTHTOKEN`, `EMAIL_PASSWORD`) into the repository.
-- Use a secrets manager (Vault, AWS Secrets Manager, GitHub Actions Secrets) and environment variables for runtime.
-- Use HTTPS endpoints, harden the SMTP relay, and enforce strong password policies.
-- Consider configuring rate-limiting at the reverse proxy or API gateway level for high-traffic setups.
+Never commit secrets (HF_TOKEN, NGROK_AUTHTOKEN, EMAIL_PASSWORD) into the repository.
+
+Use a secrets manager (Vault, AWS Secrets Manager, GitHub Actions Secrets) and environment variables for runtime.
+
+Use HTTPS endpoints, harden the SMTP relay, and enforce strong password policies.
+
+Consider configuring rate-limiting at the reverse proxy or API gateway level for high-traffic setups.
 
 Contribution & license
 ----------------------
+
+Contributions are welcome! Please open an issue or pull request for any bug fixes or feature requests.
+
+Distributed under the MIT License. See LICENSE for more information.
 If you want a formal license added, choose one of the following and I will add it to the repo:
 - MIT
 - Apache-2.0
