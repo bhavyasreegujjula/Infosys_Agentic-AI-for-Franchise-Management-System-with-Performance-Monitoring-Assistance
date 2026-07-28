@@ -136,17 +136,17 @@ High-level modules and their core responsibilities:
    git clone [https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git)
    cd Infosys_FranciseOps_AI/Milestone2
 
-2. Set up a virtual environment:
+2. **Set up a virtual environment:**
 
    python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3.Install dependencies:
+3. **Install dependencies:**
 
 pip install -r requirements.txt
 
 
-4. Configure environment variables:
+4. **Configure environment variables:**
 Create a .env file in the root directory:
 
 HF_TOKEN=your_huggingface_token
@@ -154,41 +154,20 @@ NGROK_AUTHTOKEN=your_ngrok_token
 EMAIL_ID=your_email@gmail.com
 EMAIL_PASSWORD=your_app_password
 
-5. Mount Google Drive in Colab when prompted — the notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
+5. **Mount Google Drive in Colab when prompted**
+ — The notebook expects to persist DB and model files under `/content/drive/MyDrive/FranchiseOps_AI`.
 
-6. Run the notebook sequentially: install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
+7. **Run the notebook sequentially:**
+   Install dependencies → configure secrets & mount drive → verify GPU → write modules → init DB & seed data → (optionally) train models.
 
-7. Launch Streamlit inside Colab and expose via ngrok :
+9. **Launch Streamlit inside Colab and expose via ngrok :**
 
    from pyngrok import ngrok
 ngrok.set_auth_token("<NGROK_AUTHTOKEN>")
 ngrok.connect(8501)
 !streamlit run app.py
 
-Quick start — Local (developer flow)
------------------------------------
-1. Clone repository and create virtualenv:
 
-   git clone https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI.git
-   cd Infosys_FranciseOps_AI
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install -r requirements.txt  # or pip install the list from the notebook
-
-2. Export environment variables or edit config.py to set paths/secrets for local development. For example (Linux/macOS):
-
-   export HF_TOKEN="your_hf_token"
-   export NGROK_AUTHTOKEN="your_ngrok_token"
-   export EMAIL_ID="you@gmail.com"
-   export EMAIL_PASSWORD="app-password"
-
-3. Initialize DB and seed sample data (optional but recommended):
-
-   python -c "import db, seed_data; db.init_db(); seed_data.seed_all()"
-
-4. Start the app:
-
-   streamlit run app.py
 
 Secrets, tokens & storage
 -------------------------
@@ -289,12 +268,13 @@ Use HTTPS endpoints, harden the SMTP relay, and enforce strong password policies
 
 Consider configuring rate-limiting at the reverse proxy or API gateway level for high-traffic setups.
 
-Contribution & license
-----------------------
+## Contribution & license
+
 
 Contributions are welcome! Please open an issue or pull request for any bug fixes or feature requests.
 
 Distributed under the MIT License. See LICENSE for more information.
+
 If you want a formal license added, choose one of the following and I will add it to the repo:
 - MIT
 - Apache-2.0
