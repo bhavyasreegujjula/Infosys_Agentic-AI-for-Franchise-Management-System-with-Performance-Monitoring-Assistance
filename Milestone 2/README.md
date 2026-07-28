@@ -151,9 +151,7 @@ Quick start — Colab (recommended)
 ----------------------------------
 1. Open `FreightQuote_AI_Milestone2.ipynb` in Google Colab.
 2. Install dependencies with the notebook cell (or run locally):
-3. 
-
-   pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
+3. pip install streamlit pyngrok bcrypt pyjwt pandas numpy scikit-learn joblib transformers accelerate bitsandbytes plotly streamlit-option-menu faker kaggle xgboost
 
 
 
@@ -227,7 +225,7 @@ Screenshots (placeholders)
 
 "A login page titled 'FranchiseOps AI Portal' for an Enterprise Multi-Agent Franchise Intelligence System. The page includes tabs for Sign In, Register, and Reset Password, fields for email/username and password, and a large yellow 'Sign In' button. The top-right corner displays the status '... CONNECTING'."
 
-***Admin Dashboard***
+***ADMIN DASHBOARD***
 <img width="1600" height="900" alt="Admin Dashboard " src="https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/79e21a5e8573a434bc4373ebb9e7f72ea5642ef4/Milestone%202/Screenshots/ADD_DELETE_UNLOCK.png"/>
 
 
@@ -235,21 +233,22 @@ Screenshots (placeholders)
 
  ***AI COPILOT DEBATE VIEW***
  - 
-![image alt](https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/10576c6bf31f3aad173e2b1647e70cd730da75aa/Milestone%202/Screenshots/AI%20Copilot.png)
+<img width="1920" height="913" alt="AI Copilot" src="https://github.com/user-attachments/assets/ab54ec9b-bb39-489f-b2bb-e6efe733fb32" />
 
 
 "The FranchiseOps AI dashboard displays the AI Copilot module with GPU acceleration enabled on Tesla T4 for the Qwen-2.5-3B language model. The page presents a conversational interface titled 'Unified AI Copilot — Total Franchise Intelligence.' After the user asks which outlet is performing well, the AI reports that OUT-101 Mumbai shows positive revenue growth and stable performance metrics based on integrated franchise intelligence data. Navigation options for workforce, outlets, inventory, analytics, and administration are provided in the left sidebar."
 
 ***ML MODEL CARD***
 
-<img width="1433" height="839" alt="ML MODEL CARD" src="https://github.com/user-attachments/assets/51761d3f-04df-46df-bcd9-7fed0fa10e93" />
-
+<img width="1433" height="839" alt="ML MODEL CARD" src="https://github.com/user-attachments/assets/c78a3e1a-9d45-4829-bfa0-9837502126d9" />
 
 "The FranchiseOps AI Admin Dashboard displays the ML Model Card page showing machine learning model performance for three intelligent agents. A table lists model names, R² scores, training data size, and timestamps for inventory and revenue prediction models. Summary cards at the bottom report 100% accuracy for the workforce attrition model, an R² score of 0.835 for revenue prediction, and an R² score of 0.987 for inventory forecasting. The Admin Dashboard is selected in the left navigation panel."
 
 
 ***ML PRICING CALCULATOR***
-<img width="1920" height="909" alt="ML_PRICING_CALCULATOR" src="https://github.com/user-attachments/assets/acb4d63d-9696-49ff-93f1-c5b59cf05e19" />
+
+<img width="1920" height="909" alt="ML_PRICING_CALCULATOR" src="https://github.com/user-attachments/assets/d6e58ad7-f7a9-4083-898c-9a0128644587" />
+
 
 The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost Analyzer module. Users can enter shipment details including a distance of 250 kilometers, a shipment weight of 450 kilograms, traffic congestion level 2, and an Express delivery priority. Using machine learning models trained on supply chain datasets and accelerated by a Tesla T4 GPU environment, the system predicts a freight transportation cost of ₹8,089.65. The left navigation menu provides access to additional modules for route delay analysis, carrier compliance monitoring, analytics, and AI-powered supply chain intelligence.
 
@@ -257,7 +256,9 @@ The Supply Chain Ops AI dashboard displays the Agent 1: Freight Pricing & Cost A
 
 ***TRIGGERED LOGOUT DUE TO INCORRECT PASSWORD ENTRY***
 
-<img width="1900" height="900" alt="Triggered Logout" src="https://github.com/bhavyasreegujjula/Infosys_FranciseOps_AI/blob/79e21a5e8573a434bc4373ebb9e7f72ea5642ef4/Milestone%202/Screenshots/TRIGGERED%20LOCKOUT.png"/>
+
+
+
 
 The image shows the User Management section of the Admin Dashboard in the FranchiseOps AI Portal. It allows administrators to manage user accounts and monitor their access status. The page displays a list of registered users along with their email addresses, assigned roles, and account statuses. Administrators can perform actions such as adding new users, unlocking locked accounts, and deleting user accounts. In the example, one user account is marked as Locked with an Unlock option available, while active users can be managed using the Delete option. This module enhances system security and access control by enabling efficient user administration and account management.
 
