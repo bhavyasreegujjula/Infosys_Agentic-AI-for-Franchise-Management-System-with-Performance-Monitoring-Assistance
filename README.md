@@ -1,1 +1,1 @@
-# Infosys_FranciseOps_AI
+# Infosys_Agentic AI for Franchise Management System
