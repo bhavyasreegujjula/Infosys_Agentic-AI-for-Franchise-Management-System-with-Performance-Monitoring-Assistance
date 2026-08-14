@@ -4,7 +4,7 @@ FranchiseOps AI — RAG Knowledge Base Builder
 
 
 
-🎯 Objectives
+##🎯 Objectives
 
 🔎 Build a reliable knowledge base for the FranchiseOps RAG system.
 
@@ -24,34 +24,35 @@ FranchiseOps AI — RAG Knowledge Base Builder
 
 🧪 Validate the retrieval pipeline using predefined FranchiseOps test queries.
 
-##Features
+## ✨ Features & Capabilities
 
-Scrapes configured HTML sources.
+### 📚 1. Document RAG Engine & PDF Studio
+| Feature | Description |
+| :--- | :--- |
+| **PDF Discovery & Parsing** | Scrapes and downloads PDF manuals and operational guidelines using `BeautifulSoup` and `Requests`. |
+| **Text Extraction & Chunking** | Extracts raw text via `PyMuPDF` (`fitz`) and creates optimized overlapping chunks using `RecursiveCharacterTextSplitter`. |
+| **Vector Store & Retrieval** | Converts text into semantic embeddings with `all-MiniLM-L6-v2` and indexes them in `FAISS` for fast similarity search. |
+| **Grounded AI Generation** | Feeds relevant document chunks into the LLM context to generate accurate answers with source citations and avoid hallucinations. |
 
-Automatically discovers PDF links embedded in scraped webpages.
+---
 
-Downloads and extracts text from PDF documents using PyMuPDF.
+### 📊 2. Kaggle Data Pipeline
+| Feature | Description |
+| :--- | :--- |
+| **Automated Dataset Ingestion** | Fetches enterprise HR, logistics, and sales datasets automatically via the Kaggle API. |
+| **Data Cleaning & Normalization** | Cleans missing fields, handles malformed inputs, and formats columns for downstream agent consumption. |
+| **Non-Destructive Refresh** | Updates internal data storage tables seamlessly without resetting active user sessions or authentication records. |
 
-Stores extracted content as .txt files.
+---
 
-Maintains a manifest.json to track successful, skipped, and failed sources.
+### 🤖 3. AI Copilot & Domain Intelligence
+| Feature | Description |
+| :--- | :--- |
+| **RAG-Backed Copilot** | Answers user queries in real-time by drawing factual knowledge directly from indexed franchise documents. |
+| **Sentiment & Feedback Analysis** | Evaluates customer feedback and operational logs using `VADER Sentiment` and `TextBlob`. |
+| **Multi-Agent Data Feeds** | Passes refreshed pipeline data directly to domain agents (Workforce, Outlet Tiering, Inventory Safety). |
 
-Loads scraped documents into LangChain Document objects.
-
-Adds curated FranchiseOps operational SOPs with IDs such as KB-101 through KB-125.
-
-Splits documents into overlapping chunks.
-
-Generates semantic embeddings using all-MiniLM-L6-v2.
-
-Builds a FAISS vector index for similarity search.
-
-Runs retrieval dry-runs against operational questions.
-
-Returns the retrieved source and SOP ID when available.
-
-##RAG Architecture
-
+## 🏗 RAG System Architecture
 Configured HTML Sources + PDF Sources
                 |
                 v
