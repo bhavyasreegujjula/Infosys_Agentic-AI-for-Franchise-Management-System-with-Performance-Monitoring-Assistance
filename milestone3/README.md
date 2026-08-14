@@ -1,28 +1,21 @@
-FranchiseOps AI — RAG Knowledge Base Builder
+**FranchiseOps AI — RAG Knowledge Base Builder**
 
  This notebook collects information from curated web and PDF sources, extracts text, adds operational SOP knowledge, converts the content into embeddings, and stores the embeddings in a FAISS vector index for semantic retrieval.
 
+## 🎯 Objectives & Deliverables
 
+The primary objective of this module is to construct a robust, high-performance knowledge retrieval pipeline that powers the **FranchiseOps RAG System** with grounded, domain-specific intelligence.
 
-##🎯 Objectives
-
-🔎 Build a reliable knowledge base for the FranchiseOps RAG system.
-
-🌐 Collect relevant information from web pages and PDF documents covering marketing, customer experience, HR, food safety, labour laws, workplace safety, and related business domains.
-
-📄 Extract and store useful text from scraped webpages and downloadable PDFs.
-
-📚 Combine external source material with curated FranchiseOps operational SOPs.
-
-✂️ Split documents into manageable overlapping chunks for semantic retrieval.
-
-🧠 Convert document chunks into numerical embeddings using a sentence-transformer model.
-
-🗂️ Store the embeddings in a FAISS vector database for fast similarity search.
-
-💬 Retrieve the most relevant knowledge for operational questions and provide source/SOP metadata.
-
-🧪 Validate the retrieval pipeline using predefined FranchiseOps test queries.
+| # | Icon | Objective | Target Description | Primary Tool / Tech |
+| :-: | :-: | :--- | :--- | :--- |
+| **1** | 🔎 | **Knowledge Base Construction** | Build a reliable, structured knowledge base tailored for the FranchiseOps RAG system. | `LangChain`, `Google Drive` |
+| **2** | 🌐 | **Multi-Domain Web Scraping** | Collect relevant operational data across marketing, CX, HR, food safety, labor laws, and workplace safety. | `Requests`, `BeautifulSoup` |
+| **3** | 📄 | **Text Extraction & Storage** | Parse and extract clean text from web pages and downloadable PDFs into persistent `.txt` files. | `PyMuPDF (fitz)` |
+| **4** | 📚 | **SOP Integration** | Merge extracted external source materials with curated FranchiseOps operational SOPs and metadata. | `LangChain Document` |
+| **5** | ✂️ | **Document Chunking** | Divide long-form text into manageable, overlapping chunks to maintain semantic context during retrieval. | `RecursiveCharacterTextSplitter` |
+| **6** | 🧠 | **Semantic Embeddings** | Convert document text chunks into 384-dimensional dense vector representations. | `all-MiniLM-L6-v2` |
+| **7** | 🗂️ | **Vector Indexing** | Index and store vector embeddings in a high-speed similarity database for $k$-NN search. | `FAISS` |
+| **8** | 💬 | **Grounded Retrieval & Metadata** | Retrieve top-matching knowledge chunks for user queries along with traceable source/SOP citations. | `FAISS Retriever`, `Qwen2.5-3B` |.
 
 ## ✨ Features & Capabilities
 
@@ -112,88 +105,48 @@ Configured HTML Sources + PDF Sources
 FranchiseOps_AI/ │ ├── rag_documents/ │ ├── html_.txt │ ├── pdf_.txt │ ├── manifest.json │ ├── kb_franchise.json │ ├── franchiseops_faiss_index/ │ ├── RAG_KnowledgeBase.ipynb │ └── README.md
 
 
-Running the Notebook
+## 🚀 Running the Notebook (`FranchiseOps_RAG_Builder.ipynb`)
 
-1. Open in Google Colab
+Follow these step-by-step instructions to execute the RAG pipeline notebook, crawl source documents, build vector embeddings, and perform similarity retrieval.
 
-Open:
+---
 
-FranchiseOps_RAG_Builder.ipynb
+### ⚙️ Step-by-Step Execution Workflow
 
-The notebook is configured for a Python 3 kernel and uses Google Drive for persistent storage.
+| Step | Phase | Details & Action |
+| :-: | :--- | :--- |
+| **1** | **Open in Google Colab** | Launch `FranchiseOps_RAG_Builder.ipynb` in **Google Colab** (configured for a **Python 3** kernel and **T4 GPU** acceleration). |
+| **2** | **Mount Google Drive** | Mount Google Drive to establish a persistent document directory:<br>`/content/drive/MyDrive/FranchiseOps_AI/rag_documents`<br>*(Stores downloaded `.txt` files, crawled outputs, and the source manifest)*. |
+| **3** | **Install Dependencies** | Execute the package installation cell to install core RAG and web scraping libraries:<br>`!pip install pymupdf beautifulsoup4 requests langchain sentence-transformers faiss-cpu tqdm` |
+| **4** | **Collect Source Material** | **Automated Web & PDF Scraper Executed:**<br>• Processes configured HTML sources and extracts clean text.<br>• Discovers embedded PDF links and merges them with static PDF source lists.<br>• Downloads PDFs and extracts text using `PyMuPDF` (`fitz`).<br>• Saves successful extracted content as `.txt` files in Drive.<br>• *Includes retries, exponential backoff, request timeouts, and SSL fallback routines.* |
+| **5** | **Load & Label Documents** | Text files exceeding 50 characters are loaded into **LangChain `Document` objects** and assigned metadata attributes: |
 
-2. Mount Google Drive
-
-The notebook mounts Google Drive and creates:
-
-/content/drive/MyDrive/FranchiseOps_AI/rag_documents
-
-This directory is used for scraped text files and the source manifest.
-
-3. Install dependencies
-
-Run the package-installation cell before executing the remaining cells.
-
-4. Collect source material
-
-The notebook:
-
-Processes configured HTML sources.
-
-Extracts readable webpage text.
-
-Discovers PDF links embedded in webpages.
-
-Merges discovered PDFs with the static PDF list.
-
-Downloads PDFs.
-
-Extracts PDF text.
-
-Saves successful content as .txt files.
-
-The scraper uses retries, exponential backoff, request timeouts, and an SSL fallback.
-
-5. Load documents
-
-Scraped text files longer than 50 characters are loaded as LangChain Document objects.
-
-Each scraped document receives metadata such as:
-
+#### 🏷️ Document Metadata Structure
+```json
 {
     "source": "filename.txt",
-    "type": "scraped"
+    "type": "scraped",
+    "sop_id": "SOP-104"  // Added for curated FranchiseOps SOP documents
 }
 
-Curated SOP documents additionally contain an SOP ID.
 
-6. Create embeddings and FAISS index
+6. Vector Store & Index Generation
+Documents are split into overlapping text chunks and embedded into a similarity search index:
 
-Documents are split using:
-
-RecursiveCharacterTextSplitter(
+# Document Chunking
+text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=100
 )
 
-Embeddings are generated with:
-
-HuggingFaceEmbeddings(
+# Dense Embeddings Model
+embeddings = HuggingFaceEmbeddings(
     model_name="all-MiniLM-L6-v2"
 )
 
-The FAISS index is then created and saved locally as:
+# Persistent Vector Database Output
+vectorstore = FAISS.from_documents(docs, embeddings)
+vectorstore.save_local("franchiseops_faiss_index")
 
-franchiseops_faiss_index
-
-Retrieval
-
-The notebook performs semantic similarity search with:
-
-vectorstore.similarity_search(query, k=1)
-
-Example questions tested by the notebook include:
-
-What is the minimum freezer temperature?
-How many staff are required per shift?
-What is the handwashing procedure?
+<img width="1600" height="590" alt="m3 2" src="https://github.com/user-attachments/assets/7bd0e130-282c-4473-917d-23be43ff1797" />
+<img width="1600" height="552" alt="m3 1" src="https://github.com/user-attachments/assets/66fa891d-53ff-43e8-b6f9-cb70bcb752f5" />
