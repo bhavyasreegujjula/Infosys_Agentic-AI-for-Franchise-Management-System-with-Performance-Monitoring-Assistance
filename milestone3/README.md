@@ -2,7 +2,7 @@ FranchiseOps AI — RAG Knowledge Base Builder
 
  This notebook collects information from curated web and PDF sources, extracts text, adds operational SOP knowledge, converts the content into embeddings, and stores the embeddings in a FAISS vector index for semantic retrieval.
 
-Note: The provided notebook implements the knowledge-base and retrieval layer of a RAG system. It retrieves relevant source passages but does not contain a full LLM answer-generation chain.
+
 
 🎯 Objectives
 
@@ -24,7 +24,7 @@ Note: The provided notebook implements the knowledge-base and retrieval layer of
 
 🧪 Validate the retrieval pipeline using predefined FranchiseOps test queries.
 
-Features
+##Features
 
 Scrapes configured HTML sources.
 
@@ -50,7 +50,7 @@ Runs retrieval dry-runs against operational questions.
 
 Returns the retrieved source and SOP ID when available.
 
-RAG Architecture
+##RAG Architecture
 
 Configured HTML Sources + PDF Sources
                 |
@@ -86,64 +86,113 @@ Configured HTML Sources + PDF Sources
                 v
        Relevant Source Snippet
 
-       🛠️ Technologies Used
+      
+ 🛠️ Technologies Used
 
-🔧 Technology
+| 🔧 Technology | 📌 Purpose |
+| :--- | :--- |
+| **🐍 Python** | Main implementation language |
+| **☁️ Google Colab** | Notebook execution environment |
+| **💾 Google Drive** | Persistent storage for RAG documents |
+| **🌐 Requests** | Web requests and PDF downloading |
+| **🧹 BeautifulSoup** | HTML parsing and PDF-link discovery |
+| **📄 PyMuPDF (fitz)** | PDF text extraction |
+| **🔗 LangChain** | Document processing and vector-store workflow |
+| **✂️ RecursiveCharacterTextSplitter** | Document chunking |
+| **🧠 Sentence Transformers** | Semantic text embeddings |
+| **🤗 all-MiniLM-L6-v2** | Embedding model |
+| **🗃️ FAISS** | Vector similarity search and storage |
+| **📝 TextBlob** | Text-processing dependency |
+| **💭 VADER Sentiment** | Sentiment-analysis dependency |
+| **⏳ tqdm** | Progress bars during processing |
 
-📌 Purpose
 
-🐍 Python
+📂 Project Structure
+FranchiseOps_AI/ │ ├── rag_documents/ │ ├── html_.txt │ ├── pdf_.txt │ ├── manifest.json │ ├── kb_franchise.json │ ├── franchiseops_faiss_index/ │ ├── RAG_KnowledgeBase.ipynb │ └── README.md
 
-Main implementation language
 
-☁️ Google Colab
+Running the Notebook
 
-Notebook execution environment
+1. Open in Google Colab
 
-💾 Google Drive
+Open:
 
-Persistent storage for RAG documents
+FranchiseOps_RAG_Builder.ipynb
 
-🌐 Requests
+The notebook is configured for a Python 3 kernel and uses Google Drive for persistent storage.
 
-Web requests and PDF downloading
+2. Mount Google Drive
 
-🧹 BeautifulSoup
+The notebook mounts Google Drive and creates:
 
-HTML parsing and PDF-link discovery
+/content/drive/MyDrive/FranchiseOps_AI/rag_documents
 
-📄 PyMuPDF (fitz)
+This directory is used for scraped text files and the source manifest.
 
-PDF text extraction
+3. Install dependencies
 
-🔗 LangChain
+Run the package-installation cell before executing the remaining cells.
 
-Document processing and vector-store workflow
+4. Collect source material
 
-✂️ RecursiveCharacterTextSplitter
+The notebook:
 
-Document chunking
+Processes configured HTML sources.
 
-🧠 Sentence Transformers
+Extracts readable webpage text.
 
-Semantic text embeddings
+Discovers PDF links embedded in webpages.
 
-🤗 all-MiniLM-L6-v2
+Merges discovered PDFs with the static PDF list.
 
-Embedding model
+Downloads PDFs.
 
-🗃️ FAISS
+Extracts PDF text.
 
-Vector similarity search and storage
+Saves successful content as .txt files.
 
-📝 TextBlob
+The scraper uses retries, exponential backoff, request timeouts, and an SSL fallback.
 
-Text-processing dependency
+5. Load documents
 
-💭 VADER Sentiment
+Scraped text files longer than 50 characters are loaded as LangChain Document objects.
 
-Sentiment-analysis dependency
+Each scraped document receives metadata such as:
 
-⏳ tqdm
+{
+    "source": "filename.txt",
+    "type": "scraped"
+}
 
-Progress bars during processing
+Curated SOP documents additionally contain an SOP ID.
+
+6. Create embeddings and FAISS index
+
+Documents are split using:
+
+RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=100
+)
+
+Embeddings are generated with:
+
+HuggingFaceEmbeddings(
+    model_name="all-MiniLM-L6-v2"
+)
+
+The FAISS index is then created and saved locally as:
+
+franchiseops_faiss_index
+
+Retrieval
+
+The notebook performs semantic similarity search with:
+
+vectorstore.similarity_search(query, k=1)
+
+Example questions tested by the notebook include:
+
+What is the minimum freezer temperature?
+How many staff are required per shift?
+What is the handwashing procedure?
