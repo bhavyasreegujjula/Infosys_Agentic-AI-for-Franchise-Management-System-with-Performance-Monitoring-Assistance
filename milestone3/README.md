@@ -1,98 +1,149 @@
 FranchiseOps AI — RAG Knowledge Base Builder
-This repository contains the Jupyter/Google Colab notebook used to scrape, curate, process, and index compliance, operational, and regulatory documentation for the FranchiseOps AI Retrieval-Augmented Generation (RAG) system.
 
-📌 Project Overview
-The Knowledge Base Builder automated pipeline collects domain-specific operational standards and regulatory compliance documentation across multiple key domains (food safety, labor laws, customer experience, marketing, HR, workplace safety). It cleans and chunks this unstructured data alongside structured internal SOPs, embeds the text, and stores the resulting vector representations in a searchable FAISS index.
+ This notebook collects information from curated web and PDF sources, extracts text, adds operational SOP knowledge, converts the content into embeddings, and stores the embeddings in a FAISS vector index for semantic retrieval.
 
-🏗️ Architecture & Workflow Pipeline
-Environment Setup & Drive Integration: Mounts Google Drive storage for output persistence and installs relevant NLP/RAG dependencies.
+Note: The provided notebook implements the knowledge-base and retrieval layer of a RAG system. It retrieves relevant source passages but does not contain a full LLM answer-generation chain.
 
-Web Scraping & PDF Harvesting (Phase 1 & 2):
+🎯 Objectives
 
-Scrapes structured HTML pages using requests and BeautifulSoup.
+🔎 Build a reliable knowledge base for the FranchiseOps RAG system.
 
-Automatically extracts embedded PDF links from web content.
+🌐 Collect relevant information from web pages and PDF documents covering marketing, customer experience, HR, food safety, labour laws, workplace safety, and related business domains.
 
-Combines harvested links with curated static PDF lists to compile a comprehensive document repository.
+📄 Extract and store useful text from scraped webpages and downloadable PDFs.
 
-Document Extraction & Normalization (Phase 3):
+📚 Combine external source material with curated FranchiseOps operational SOPs.
 
-Downloads and parses PDFs using PyMuPDF (fitz).
+✂️ Split documents into manageable overlapping chunks for semantic retrieval.
 
-Cleans HTML layout artifacts, scripts, and non-content elements.
+🧠 Convert document chunks into numerical embeddings using a sentence-transformer model.
 
-Exports extracted document text into individual raw .txt files while keeping track of processing status in a persistent manifest.json.
+🗂️ Store the embeddings in a FAISS vector database for fast similarity search.
 
-Curated SOP Integration: Loads and formats internal structured Standard Operating Procedures (KB-101 through KB-125) into document models.
+💬 Retrieve the most relevant knowledge for operational questions and provide source/SOP metadata.
 
-Text Splitting & Embedding:
+🧪 Validate the retrieval pipeline using predefined FranchiseOps test queries.
 
-Uses RecursiveCharacterTextSplitter (chunk size: 1000, overlap: 100).
+Features
 
-Generates dense vector embeddings using SentenceTransformers (all-MiniLM-L6-v2).
+Scrapes configured HTML sources.
 
-Vector Indexing & Dry Run Verification:
+Automatically discovers PDF links embedded in scraped webpages.
 
-Constructs a FAISS vector store and saves the local index (franchiseops_faiss_index).
+Downloads and extracts text from PDF documents using PyMuPDF.
 
-Runs verification queries against the vector database to ensure high retrieval relevance across SOPs and regulatory documents.
+Stores extracted content as .txt files.
 
-🛠️ Tech Stack & Requirements
-Language: Python 3.x
+Maintains a manifest.json to track successful, skipped, and failed sources.
 
-Orchestration & Frameworks: LangChain, LangChain Community, LangChain Text Splitters
+Loads scraped documents into LangChain Document objects.
 
-Web Scraping & Parsing: BeautifulSoup4, requests, urllib3, PyMuPDF (fitz)
+Adds curated FranchiseOps operational SOPs with IDs such as KB-101 through KB-125.
 
-Embeddings & Vector Store: sentence-transformers, FAISS (faiss-cpu)
+Splits documents into overlapping chunks.
 
-Utilities: tqdm, TextBlob, vaderSentiment
+Generates semantic embeddings using all-MiniLM-L6-v2.
 
-📁 Key File & Directory Artifacts
+Builds a FAISS vector index for similarity search.
 
-FranchiseOps_AI/
-└── rag_documents/
-    ├── manifest.json                        # Tracks status (success/skipped/failed) of source URLs
-    ├── html_*.txt                           # Extracted text files from web pages
-    └── pdf_*.txt                            # Extracted text files from PDF documents
-kb_franchise.json                            # Structured internal SOP database (JSON)
-franchiseops_faiss_index/                    # Built FAISS vector database
-🚀 Quickstart Guide
-1. Installation
-Install all required Python dependencies:
+Runs retrieval dry-runs against operational questions.
 
-Bash
-pip install -q langchain langchain-community langchain-text-splitters -U \
-  langchain-core sentence-transformers faiss-cpu pymupdf \
-  beautifulsoup4 requests==2.32.4 urllib3 tqdm vaderSentiment textblob
-2. Execution
-Run the notebook sequentially in Google Colab or a local Jupyter environment:
+Returns the retrieved source and SOP ID when available.
 
-Cell 1–3: Mount Google Drive and initialize output directories (/content/drive/MyDrive/FranchiseOps_AI/rag_documents).
+RAG Architecture
 
-Cell 4: Define target HTML sources (FSSAI, OSHA, FDA, WHO, ILO, Labour Laws) and target PDF URLs.
+Configured HTML Sources + PDF Sources
+                |
+                v
+       Web Scraping / PDF Harvesting
+                |
+                v
+       PDF Download + Text Extraction
+                |
+                v
+          Text Documents (.txt)
+                |
+                +------ Curated Franchise SOPs
+                |
+                v
+        LangChain Document Objects
+                |
+                v
+       Recursive Text Chunking
+        chunk_size = 1000
+        overlap    = 100
+                |
+                v
+     HuggingFace Sentence Embeddings
+          all-MiniLM-L6-v2
+                |
+                v
+          FAISS Vector Store
+                |
+                v
+       Similarity Search / Retrieval
+                |
+                v
+       Relevant Source Snippet
 
-Cell 5: Execute multi-phase scraping, PDF harvesting, and text extraction.
+       🛠️ Technologies Used
 
-Cell 6–7: Merge scraped text files with internal curated JSON SOPs (kb_franchise.json).
+🔧 Technology
 
-Cell 8: Split text into chunks, generate embeddings via all-MiniLM-L6-v2, and save the local FAISS index (franchiseops_faiss_index).
+📌 Purpose
 
-Cell 9: Perform dry-run retrieval tests to verify query accuracy.
+🐍 Python
 
-🔍 Validation & Dry-Run Queries
-The system was validated using test queries covering key franchise operational domains:
+Main implementation language
 
-Minimum freezer temperature rules
+☁️ Google Colab
 
-Shift staffing requirements
+Notebook execution environment
 
-Handwashing and hygiene compliance
+💾 Google Drive
 
-FSSAI non-compliance penalties
+Persistent storage for RAG documents
 
-Customer complaint escalation protocols
+🌐 Requests
 
-Marketing campaign ROI thresholds
+Web requests and PDF downloading
 
-Quarterly staff performance review criteria
+🧹 BeautifulSoup
+
+HTML parsing and PDF-link discovery
+
+📄 PyMuPDF (fitz)
+
+PDF text extraction
+
+🔗 LangChain
+
+Document processing and vector-store workflow
+
+✂️ RecursiveCharacterTextSplitter
+
+Document chunking
+
+🧠 Sentence Transformers
+
+Semantic text embeddings
+
+🤗 all-MiniLM-L6-v2
+
+Embedding model
+
+🗃️ FAISS
+
+Vector similarity search and storage
+
+📝 TextBlob
+
+Text-processing dependency
+
+💭 VADER Sentiment
+
+Sentiment-analysis dependency
+
+⏳ tqdm
+
+Progress bars during processing
