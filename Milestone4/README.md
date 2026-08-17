@@ -43,8 +43,7 @@
 | ------------------- | ---------------------- | -------------------- |
 | **Shivaram Ponnam** | **AI/ML Model Development**     | **@ShivaramPonnam** |
 | **Kuldeepreddy** | **Admin Dashboard & Data Feed Center**     | **@Kuladeepreddy** |
-| **Roshini Rajput** | **UI/Fronted Development**     | **<img width="1912" height="888" alt="636877613-969c2ff3-a29f-4a84-9c7d-7604b86c288b" src="https://github.com/user-attachments/assets/cb3bf658-d8ac-447b-b2ff-ada627080c00" />
-@roshanirr2006-wq** |
+| **Roshini Rajput** | **UI/Fronted Development**     | **@roshanirr2006-wq** |
 | **Bhavya Sree** | **Authentication and Login Module**     | **@bhavyasreegujjula** |
 | **Boddu Mounika** | **System Integration & Analytics**     | **@Mounika-boddu** |
 
