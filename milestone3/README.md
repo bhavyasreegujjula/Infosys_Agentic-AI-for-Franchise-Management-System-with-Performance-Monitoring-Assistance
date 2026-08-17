@@ -338,4 +338,3 @@ Through this milestone, the following concepts were learned:
  
  
  
- 600" height="552" alt="m3 1" src="https://github.com/user-attachments/assets/66fa891d-53ff-43e8-b6f9-cb70bcb752f5" />
